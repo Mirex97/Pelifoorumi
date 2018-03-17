@@ -22,18 +22,18 @@ foorumiin). Ja muita pysyviä muuttujia, kuten viestienmäärä, keskustelupalst
 
 Toimintoja ('+' pääominaisuus, '-' sivuominaisuus. Sivuominaisuus voidaan luoda mutta ei pakollinen):
 
-- Kirjautuminen / Rekisteröityminen
-- Profiilin muokkaus (mahdollisesti myös profiilikuvan lisääminen)
-- Keskustelupalstan luominen luokan sisälle
-- Keskustelupalstan muokkaus (Ylläpito ja Omistaja)
-- Keskustelupalstan lukeminen ja kommentoiminen (kaikki)
-- Keskustelupalstojen etsintä tagien avulla
-- Ja tietysti keskustelupalstojen listaus oletetusti. (Listaus joko viimeksi luotujen mukaan, tai mahdollisesti suosion mukaan tai
+- + Kirjautuminen / Rekisteröityminen
+- + Profiilin muokkaus (mahdollisesti myös profiilikuvan lisääminen)
+- + Keskustelupalstan luominen luokan sisälle
+- + Keskustelupalstan muokkaus (Ylläpito ja Omistaja)
+- + Keskustelupalstan lukeminen ja kommentoiminen (kaikki)
+- + Keskustelupalstojen etsintä tagien avulla
+- + Ja tietysti keskustelupalstojen listaus oletetusti. (Listaus joko viimeksi luotujen mukaan, tai mahdollisesti suosion mukaan tai
 aakkosjärjestyksessä.)
-+ Kommentien tykkääminen ja myös palstojen tykkääminen. (Voisi listata tykkäämisien mukaan)
+- - Kommentien tykkääminen ja myös palstojen tykkääminen. (Voisi listata tykkäämisien mukaan)
 
 Ylläpidon toiminnot:
-- Ylentää käyttäjiä
-- Vapaasti muokata keskustelupalstoja (paitsi sisältö), voi kuitenkin poistaa sopimattomia palstoja!
-- Siirtää keskustelupalstoja luokkien väleissä.
-- Poistaa käyttäjiä
+- + Ylentää käyttäjiä
+- + Vapaasti muokata keskustelupalstoja (paitsi sisältö), voi kuitenkin poistaa sopimattomia palstoja!
+- + Siirtää keskustelupalstoja luokkien väleissä.
+- + Poistaa käyttäjiä
