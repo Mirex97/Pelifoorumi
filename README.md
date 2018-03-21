@@ -20,9 +20,9 @@ Käyttäjien profiileista: Käyttäjä voi muokata profiilin tietoja ja muokata 
 eivät voi muokata nimeään (se pysyy minkä valitsee). Ei voi muokata käyttäjän luomishetkeä (sisältää ajankohdan jolloin liittyi
 foorumiin). Ja muita pysyviä muuttujia, kuten viestienmäärä, keskustelupalstojen luomis määrä.
 
-Toimintoja ('+' pääominaisuus, '-' sivuominaisuus. Sivuominaisuus voidaan luoda mutta ei pakollinen):
+Toimintoja:
 
-Kirjautuminen / Rekisteröityminen
+- Kirjautuminen / Rekisteröityminen
 - Profiilin muokkaus (mahdollisesti myös profiilikuvan lisääminen)
 - Keskustelupalstan luominen luokan sisälle
 - Keskustelupalstan muokkaus (Ylläpito ja Omistaja)
