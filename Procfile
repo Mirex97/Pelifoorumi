@@ -1,1 +1,1 @@
-web: gunicorn pelifoorumi:app
+web: gunicorn run:app
