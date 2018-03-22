@@ -7,8 +7,8 @@ class Task(db.Model):
     onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(144), nullable=False)
-    hidden = db.Column(db.Boolean, nullable=False)
+    done = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, name):
         self.name = name
-        self.hidden = False
+        self.done = False
