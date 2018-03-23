@@ -3,6 +3,7 @@ Nimi | Linkki
 Heroku | [Mirex-Pelifoorumi!](https://mirex-pelifoorumi.herokuapp.com/)!
 User storyt | [Stories!](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/UserStories.md)
 Kaavio | [Kaavio!](https://raw.githubusercontent.com/Mirex97/Pelifoorumi/master/documentation/Tietokanta.png)
+Dokumentaatio | [KESKEN!](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/Dokumentaatio.md)
 
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
