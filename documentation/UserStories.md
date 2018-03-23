@@ -10,6 +10,7 @@
 - Muokata palstaa omistajana.
 - Lisätä tekstiä ja kommentteja ja myös poistaa niitä.
 - Kirjautua ulos
+- + Avata linkkejä ja myös ladata foorumiin liittyvän pelin!
 
 ### Ylläpitäjänä voin:
 - Tehdä samat kuin käyttäjä!
@@ -17,3 +18,9 @@
 - Poistaa vapaasti keskustelupalstoja
 - Poistaa käyttäjiä (hyvään syyn puitteissa)
 - Siirtää palstoja ja asettaa ne piilotetuiksi tai näkyviksi! (Hidden)
+
+### Anonyyminä henkilönä voin:
+- Käydä sivulla
+- Ihannoida sivuja!
+- Lukea palstoja
+- Ladata foorumiin liittyvän pelin!
