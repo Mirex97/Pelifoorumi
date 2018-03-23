@@ -1,3 +1,5 @@
+[Linkki Herokuun](https://mirex-pelifoorumi.herokuapp.com/)
+
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
 otsikko ja siihen liittyvät tagit. Foorumilla on myös rooleja, joita ylläpito voi asettaa käyttäjille, jotka mahdollistavat käyttäjille
