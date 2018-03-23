@@ -1,4 +1,4 @@
-###Käyttäjänä voin:
+### Käyttäjänä voin:
 - Luoda käyttäjän foorumiin.
 - Asettaa käyttälle uniikin nimen ja muota tietoja.
 - Kirjautua sivulle
@@ -11,7 +11,7 @@
 - Lisätä tekstiä ja kommentteja ja myös poistaa niitä.
 - Kirjautua ulos
 
-###Ylläpitäjänä voin:
+### Ylläpitäjänä voin:
 - Tehdä samat kuin käyttäjä!
 - Luoda luokkia joihin voi muut luoda palstoja. (Vaikuttaa suoraan thread.list.html:ään ja luo sinne oman osien luokalle).
 - Poistaa vapaasti keskustelupalstoja
