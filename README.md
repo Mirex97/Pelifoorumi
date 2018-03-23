@@ -1,4 +1,7 @@
-[Linkki Herokuun](https://mirex-pelifoorumi.herokuapp.com/)
+Nimi | Linkki
+-|-
+Heroku | [Mirex-Pelifoorumi!](https://mirex-pelifoorumi.herokuapp.com/)!
+User storyt | [Stories!](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/UserStories.md)
 
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
@@ -22,7 +25,7 @@ Käyttäjien profiileista: Käyttäjä voi muokata profiilin tietoja ja muokata 
 eivät voi muokata nimeään (se pysyy minkä valitsee). Ei voi muokata käyttäjän luomishetkeä (sisältää ajankohdan jolloin liittyi
 foorumiin). Ja muita pysyviä muuttujia, kuten viestienmäärä, keskustelupalstojen luomis määrä.
 
-Toimintoja:
+## Toimintoja:
 
 - Kirjautuminen / Rekisteröityminen
 - Profiilin muokkaus (mahdollisesti myös profiilikuvan lisääminen)
@@ -34,7 +37,7 @@ Toimintoja:
 aakkosjärjestyksessä.)
 - Kommentien tykkääminen ja myös palstojen tykkääminen. (Voisi listata tykkäämisien mukaan)
 
-Ylläpidon toiminnot:
+## Ylläpidon toiminnot:
 - Ylentää käyttäjiä
 - Vapaasti muokata keskustelupalstoja (paitsi sisältö), voi kuitenkin poistaa sopimattomia palstoja!
 - Siirtää keskustelupalstoja luokkien väleissä.
