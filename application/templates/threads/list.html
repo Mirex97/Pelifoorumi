@@ -1,0 +1,22 @@
+﻿{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Thread</th>
+      <th>Owner</th>
+      <th></th>
+    </tr>
+    {% for thread in threads %}
+    <tr>
+      <td>{{ thread.name }}</td>
+      <td>{{ thread.owner }}</td>
+      <td>
+	<form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
+	  <input type="submit" value="Open Thread!"/>
+	</form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

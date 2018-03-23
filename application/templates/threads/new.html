@@ -1,0 +1,17 @@
+﻿{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('threads_create') }}">
+<table>
+  <tr>
+	<th>Topic</th>
+	<th>Owner</th>
+  </tr>
+  <tr>
+  	<td><input type="text" name="name"/></td>
+  	<td><input type="text" name="owner"/></td>
+  	<td><input type="submit" value="Create new Thread"/></td>
+  </tr>
+  </table>
+</form>
+{% endblock %}
