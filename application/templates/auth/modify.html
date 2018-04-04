@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block body %} {{ error }}
+<form method="POST" action="{{ url_for('auth_confirm') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{form.username.label}}
+            </td>
+            <td>
+                {{form.username}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.oldpassword.label }}
+            </td>
+            <td>
+                {{ form.oldpassword }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.newpassword.label }}
+            </td>
+            <td>
+                {{ form.newpassword }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Login" />
+            </td>
+        </tr>
+</form>
+<p>WARNING! --> Press with caution!
+    <form method="POST" action="{{ url_for('auth_remove') }}">
+            <input type="submit" value="DELETE ACCOUNT" />
+    </form>
+</p>
+{% endblock %}

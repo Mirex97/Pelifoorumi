@@ -1,27 +1,44 @@
-﻿{% extends "layout.html" %}
+﻿{% extends "layout.html" %} {% block body %}
 
-{% block body %}
-  <table>
-    <tr>
-      <th>Thread</th>
-      <th>Owner</th>
-      <th></th>
-    </tr>
-    {% for thread in threads %}
-    <tr>
-      <td>{{ thread.name }}</td>
-        {% for user in users %}
-        {% if user.id == thread.account_id %}
-          <td>{{ user.name }}</td>
-        {% endif %}
-        {% endfor %}
 
-      <td>
-	<form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
-	  <input type="submit" value="Open Thread!"/>
-	</form>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+<table>
+  <tr>
+    <th>My Threads</th>
+    <th></th>
+  </tr>
+  {% for thread in mythreads %}
+  <tr>
+    <td>{{ thread.name }}</td>
+
+    <td>
+      <form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
+        <input type="submit" value="Open Thread!" />
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<table>
+  <tr>
+    <th>Thread</th>
+    <th>Owner</th>
+    <th></th>
+  </tr>
+  {% for thread in threads %}
+  <tr>
+    <td>{{ thread.name }}</td>
+    {% for user in users %} {% if user.id == thread.account_id %}
+    <td>{{ user.name }}</td>
+    {% endif %} {% endfor %}
+
+    <td>
+      <form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
+        <input type="submit" value="Open Thread!" />
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}
