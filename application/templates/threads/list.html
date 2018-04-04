@@ -10,7 +10,12 @@
     {% for thread in threads %}
     <tr>
       <td>{{ thread.name }}</td>
-      <td>{{ thread.owner }}</td>
+        {% for user in users %}
+        {% if user.id == thread.account_id %}
+          <td>{{ user.name }}</td>
+        {% endif %}
+        {% endfor %}
+
       <td>
 	<form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
 	  <input type="submit" value="Open Thread!"/>
