@@ -99,6 +99,10 @@ def auth_confirm():
     user.password = form.newpassword.data
     db.session().commit()
     return redirect(url_for("auth_view"))
+
+@app.route("/auth/list")
+def auth_list():
+    return render_template("auth/list.html", users = User.query.all())
     
 
 @app.route("/auth/delete", methods = ["POST"])

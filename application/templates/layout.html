@@ -9,7 +9,9 @@
 <body>
   {% if current_user.is_authenticated %}
   <p>
-    Kirjautunut nimellä {{ current_user.name }}.<a href="{{ url_for('auth_view') }}">Profile information</a>  <a href="{{ url_for('auth_logout') }}">Logout.</a>
+    Kirjautunut nimellä {{ current_user.name }} .
+    <a href="{{ url_for('auth_view') }}">Profile information .</a>
+    <a href="{{ url_for('auth_logout') }}">Logout .</a>
   </p>
   {% else %}
   <a href="{{ url_for('auth_login') }}">Login</a>
@@ -22,6 +24,9 @@
     </li>
     <li>
       <a href="{{ url_for('threads_form') }}">Create a new Thread</a>
+    </li>
+    <li>
+      <a href="{{ url_for('auth_list') }}">List Active Users</a>
     </li>
   </ul>
 

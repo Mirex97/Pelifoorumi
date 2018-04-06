@@ -11,7 +11,7 @@
 	{% for comment in comments %}
 	<tr>
 		{% for user in users %} {% if user.id == comment.account_id %}
-		<td>{{ user.name }}</td>
+		<td>{{ user.username }}</td>
 		{% endif %} {% endfor %}
 		<td> {{comment.message}} </td>
 		<td> {{comment.date_modified}} </td>

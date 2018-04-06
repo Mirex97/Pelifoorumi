@@ -30,7 +30,7 @@
   <tr>
     <td>{{ thread.name }}</td>
     {% for user in users %} {% if user.id == thread.account_id %}
-    <td>{{ user.name }}</td>
+    <td>{{ user.username }}</td>
     {% endif %} {% endfor %}
 
     <td>
