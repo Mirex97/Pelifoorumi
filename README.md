@@ -5,6 +5,10 @@ User storyt | [Stories!](https://github.com/Mirex97/Pelifoorumi/blob/master/docu
 Kaavio | [Kaavio!](https://raw.githubusercontent.com/Mirex97/Pelifoorumi/master/documentation/Tietokanta.png)
 Dokumentaatio | [KESKEN!](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/Dokumentaatio.md)
 
+### Viimeisimmät Github päivitykset
+- Lisätty käyttäjien listaus, jonka avulla voi katsoa ketkä ovat aktiivisia käyttäjiä.
+  - Tätä voisi rajoittaa vain niihin käyttäjiin jotka haluavat näkyä julkisesti! (Privacy!)
+
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
 otsikko ja siihen liittyvät tagit. Foorumilla on myös rooleja, joita ylläpito voi asettaa käyttäjille, jotka mahdollistavat käyttäjille
