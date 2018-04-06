@@ -21,7 +21,7 @@ Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle pals
 Linkki foorumille --> Foorumi[https://mirex-pelifoorumi.herokuapp.com/]
 
 # HUOM!!!
-JOS Heroku valittaa internal server errorista, niin odota hetki ja palaa sivulle tai spämmää F5:sta. Heroku jostain syystä ei reagoi hetken aikaan, mutta melkein välittömästi pyynnön jälkeen se pitäisi herätä!
+JOS Heroku valittaa internal server errorista, niin odota hetki ja palaa sivulle tai spämmää F5:sta. Heroku jostain syystä ei reagoi hetken aikaan, mutta melkein välittömästi pyynnön jälkeen se pitäisi herätä! Tämä tapahtui itselleni usein kun yritin registeröityä sivulle. Mutta hetken päästä se toimii hyvin.
 
 #### Käyttöohjeet jatkuvat
 
