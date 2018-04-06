@@ -8,6 +8,9 @@ Dokumentaatio | [KESKEN!](https://github.com/Mirex97/Pelifoorumi/blob/master/doc
 ### Viimeisimmät Github päivitykset
 - Lisätty käyttäjien listaus, jonka avulla voi katsoa ketkä ovat aktiivisia käyttäjiä.
   - Tätä voisi rajoittaa vain niihin käyttäjiin jotka haluavat näkyä julkisesti! (Privacy!)
+**Viimeisin MAJOR päivitys**
+- Lisätty käyttäjät ja rekisteröityminen ja palstoille kommenttien kirjoittaminen
+  - Full CRUD + L käyttäjistä.
 
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
