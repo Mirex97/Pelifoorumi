@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 class Thread(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,12 +13,12 @@ class Thread(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-    #section_id = db.Column(db.Integer, db.ForeignKey('section.id'),
-                           #nullable=False)
+    section_id = db.Column(db.Integer, db.ForeignKey('section.id'),
+                           nullable=False)
     #Kuten tag modelissa lukee tämä tarvitsee varmistuksen!
     #tags = db.relationship("Tag", backref='thread', lazy=True)
 
-    comments = db.relationship("Comment", backref='thread', lazy=True)
+    comments = db.relationship("Comment", backref='thread', lazy=True, cascade="delete")
     
     #Jos hidden niin luokka ei näy muille paitsi ylläpidolle.
     #Tämän saa tehtyä, että listaukseen ei vain tule piilotettuja osia!
@@ -27,3 +28,17 @@ class Thread(db.Model):
     def __init__(self, name):
         self.name = name
         self.hidden = False
+
+    @staticmethod
+    def find_my_threads(account_id):
+        stmt = text("SELECT Thread.id, Thread.name, Section.name FROM Thread"
+                    " LEFT JOIN Section ON Section.id = Thread.section_id"
+                    " WHERE (Thread.account_id IS :accountid)"
+                    " GROUP BY Thread.id"
+                    " ORDER BY Thread.date_created"
+                    " DESC").params(accountid=account_id)
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "section":row[2]})
+        return response

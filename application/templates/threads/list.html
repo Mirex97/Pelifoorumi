@@ -1,44 +1,30 @@
 ﻿{% extends "layout.html" %} {% block body %}
-
-
+{% if mythreads %}
 <table>
   <tr>
-    <th>My Threads</th>
-    <th></th>
+    <th>Thread Name</th>
+    <th>Section</th>
   </tr>
   {% for thread in mythreads %}
   <tr>
     <td>{{ thread.name }}</td>
+    <td>{{ thread.section }}</td>
 
     <td>
       <form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
         <input type="submit" value="Open Thread!" />
       </form>
     </td>
-  </tr>
-  {% endfor %}
-</table>
-
-
-<table>
-  <tr>
-    <th>Thread</th>
-    <th>Owner</th>
-    <th></th>
-  </tr>
-  {% for thread in threads %}
-  <tr>
-    <td>{{ thread.name }}</td>
-    {% for user in users %} {% if user.id == thread.account_id %}
-    <td>{{ user.username }}</td>
-    {% endif %} {% endfor %}
-
     <td>
-      <form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
-        <input type="submit" value="Open Thread!" />
+      <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
+        <input type="submit" value="Delete Thread!" />
       </form>
     </td>
   </tr>
   {% endfor %}
 </table>
+{% else %}
+No Threads found!
+{% endif %}
+
 {% endblock %}

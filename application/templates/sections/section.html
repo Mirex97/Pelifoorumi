@@ -1,0 +1,76 @@
+{% extends "layout.html" %} {% block body %}
+<h2>{{ section.name }}</h2>
+<form method="POST" action="{{ url_for('threads_create') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+            <td>
+                <input type="submit" value="Create new Thread" />
+            </td>
+            <td>
+                {{form.section_id}}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+
+        </tr>
+
+    </table>
+</form>
+<table>
+    <tr>
+        <th>My Threads</th>
+        <th></th>
+    </tr>
+    {% for thread in mythreads %}
+    <tr>
+        <td>{{ thread.name }}</td>
+
+        <td>
+            <form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
+                <input type="submit" value="Open Thread!" />
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>Thread</th>
+        <th>Owner</th>
+        <th></th>
+    </tr>
+    {% for thread in threads %}
+    <tr>
+        <td>{{ thread.name }}</td>
+        <td>{{ thread.owner }}</td>
+
+        <td>
+            <form method="POST" action="{{ url_for('show_thread', thread_id=thread.id) }}">
+                <input type="submit" value="Open Thread!" />
+            </form>
+        </td>
+        {% if current_user.role == 'Admin' %}
+        <td>
+            <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
+                <input type="submit" value="Delete Thread!" />
+            </form>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}

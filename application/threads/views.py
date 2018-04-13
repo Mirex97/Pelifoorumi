@@ -10,13 +10,10 @@ from application.comments.forms import CommentForm
 
 
 @app.route("/threads", methods=["GET"])
+@login_required
 def threads_index():
-    threads = Thread.query.order_by(Thread.date_created.desc()).all()
-    if current_user.is_authenticated == False:
-        return render_template("threads/list.html", threads = threads,
-                           users = User.query.all())
-    mythreads = Thread.query.order_by(Thread.date_created.desc()).filter_by(account_id=current_user.id)
-    return render_template("threads/list.html", threads = threads,
+    mythreads = Thread.find_my_threads(current_user.id)
+    return render_template("threads/list.html",
                            users = User.query.all(),
                            mythreads = mythreads)
 
@@ -34,7 +31,7 @@ def show_thread(thread_id):
     return render_template("threads/thread.html",
                            thread = Thread.query.get(thread_id),
                            owner = User.query.get(thread.account_id),
-                           comments = Comment.query.filter_by(thread_id=thread.id),
+                           comments = Comment.find_comments_with_thread(thread_id),
                            form = form,
                            users = User.query.all())
 
@@ -49,8 +46,21 @@ def threads_create():
 
     t = Thread(form.name.data)
     t.account_id = current_user.id
+    t.section_id = form.section_id.data
 
     db.session().add(t)
     db.session().commit()
   
+    return redirect(url_for("show_thread", thread_id=t.id))
+
+#Need modify!
+
+@app.route("/threads/remove/<thread_id>", methods=["POST"])
+@login_required
+def thread_remove(thread_id):
+    thread = Thread.query.get(thread_id)
+    if (current_user.id != thread.account_id and current_user.role != 'Admin'):
+        return redirect(url_for("threads_index"))
+    db.session().delete(thread)
+    db.session().commit()
     return redirect(url_for("threads_index"))

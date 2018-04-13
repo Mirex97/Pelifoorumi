@@ -1,24 +1,7 @@
 ﻿{% extends "layout.html" %} {% block body %}
-<p>
-	{{ thread.name }} by {{ owner.name }}!!!
-</p>
-<table>
-	<tr>
-		<th>User</th>
-		<th>Message</th>
-		<th>Date</th>
-	</tr>
-	{% for comment in comments %}
-	<tr>
-		{% for user in users %} {% if user.id == comment.account_id %}
-		<td>{{ user.username }}</td>
-		{% endif %} {% endfor %}
-		<td> {{comment.message}} </td>
-		<td> {{comment.date_modified}} </td>
-	</tr>
-	{% endfor %}
-</table>
-
+<h3>
+	{{ thread.name }} by {{ owner.name }}
+</h3>
 <form method="POST" action="{{ url_for('comments_create') }}">
 	<table>
 		<tr>
@@ -34,14 +17,33 @@
 				{% endfor %}
 			</td>
 			<td>
-				{{form.thread_id}}
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
 				<input type="submit" value="Add Comment" />
+			</td>
+			<td>
+				{{form.thread_id}}
 			</td>
 		</tr>
 	</table>
 </form>
-{% endblock %}
+{% if comments %}
+<table>
+	<tr>
+		<th>User</th>
+		<th>Message</th>
+		<th>Date</th>
+		<th>Remove</th>
+	</tr>
+	{% for comment in comments %}
+	<tr>
+		<td>{{ comment.username }}</td>
+		<td> {{comment.message}} </td>
+		<td> {{comment.date}} </td>
+		<td>
+			<form method="POST" action="{{ url_for('comments_remove', comment_id=comment.id) }}">
+				<input type="submit" value="Remove Comment" />
+			</form>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% else %} No comments! {% endif %} {% endblock %}

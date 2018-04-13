@@ -100,16 +100,33 @@ def auth_confirm():
     db.session().commit()
     return redirect(url_for("auth_view"))
 
+@app.route("/auth/promote/<user_id>", methods = ["POST"])
+@login_required
+def auth_promote(user_id):
+    #TÄHÄN CHECKKAUS!
+    user = User.query.get(user_id)
+    user.role = 'Admin'
+    db.session().commit()
+    return redirect(url_for("auth_list"))
+
 @app.route("/auth/list")
 def auth_list():
-    return render_template("auth/list.html", users = User.query.all())
+    if not current_user.is_authenticated:
+        
+        return render_template("auth/list.html", users = User.find_usernames())
+    return render_template("auth/list.html", users = User.find_users_not_me(current_user.id))
     
 
-@app.route("/auth/delete", methods = ["POST"])
+@app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required
-def auth_remove():
-    user = User.query.get(current_user.id)
-    logout_user()
-    db.session().delete(user)
-    db.session().commit()
+def auth_remove(user_id):
+    user = User.query.get(user_id)
+    if (user.id == current_user.id or current_user.role == 'Admin'):
+        if (user.role == 'Admin' and user.id != current_user.id):
+            return redirect(url_for("auth_list"))
+        if (user.id == current_user.id):
+            logout_user()
+        db.session().delete(user)
+        db.session().commit()
+        return redirect(url_for("index"))
     return redirect(url_for("index"))

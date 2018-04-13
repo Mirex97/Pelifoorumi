@@ -40,7 +40,7 @@
         </tr>
 </form>
 <p>WARNING! --> Press with caution!
-    <form method="POST" action="{{ url_for('auth_remove') }}">
+    <form method="POST" action="{{ url_for('auth_remove', user_id=current_user.id) }}">
             <input type="submit" value="DELETE ACCOUNT" />
     </form>
 </p>

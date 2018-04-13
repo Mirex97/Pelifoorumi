@@ -24,6 +24,9 @@ from application.auth import views
 from application.comments import models
 from application.comments import views
 
+from application.sections import models
+from application.sections import views
+
 
 from application.auth.models import User
 

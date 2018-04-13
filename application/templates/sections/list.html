@@ -1,0 +1,27 @@
+{% extends "layout.html" %} {% block body %}
+
+<h1> Forums </h1>
+{% if current_user.role == 'Admin' %}
+<form method="GET" action="{{ url_for('section_form') }}">
+  <input type="submit" value="Create New Section!" />
+</form>
+{% endif %} {% for section in sections %}
+<div class="row justify-content-md-center">
+
+  <div class="col">
+    {{ section.name }}
+  </div>
+  <div class="col">
+    <form method="POST" action="{{ url_for('show_section', section_id=section.id) }}">
+      <input type="submit" value="Open Section!" />
+    </form>
+  </div>
+  {% if current_user.role == 'Admin' %}
+  <div class="col">
+    <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
+      <input type="submit" value="Delete Section!" />
+    </form>
+  </div>
+  {% endif %}
+</div>
+{% endfor %} {% endblock %}
