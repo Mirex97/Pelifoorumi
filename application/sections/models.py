@@ -21,9 +21,7 @@ class Section(db.Model):
     def find_threads_with_section(section_id):
         stmt = text("SELECT  Thread.id, Thread.name, Account.username FROM Thread"
                     " LEFT JOIN Account ON Thread.account_id = Account.id"
-                    " WHERE (Thread.section_id IS :sectionid)"
-                    " GROUP BY Thread.id"
-                    " ORDER BY Thread.date_created"
+                    " WHERE (Thread.section_id = :sectionid)"                    " ORDER BY Thread.date_created"
                     " DESC").params(sectionid=section_id)
         #" + str(section_id) + ")"
         res = db.engine.execute(stmt)
