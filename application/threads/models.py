@@ -35,7 +35,7 @@ class Thread(db.Model):
         stmt = text("SELECT  Thread.id, Thread.name, Account.username FROM Thread"
                     " LEFT JOIN Account ON Account.id = Thread.account_id"
                     " LEFT JOIN Section ON Section.id = Thread.section_id WHERE (Section.ID = :accountid)"
-                    " GROUP BY Thread.id ORDER BY Thread.date_created DESC").params(accountid=account_id)
+                    " ORDER BY Thread.date_created DESC").params(accountid=account_id)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
