@@ -57,7 +57,7 @@ class User(db.Model):
     @staticmethod
     def find_users_not_me(user_id):
         stmt = text("SELECT Account.id, Account.username, Account.role FROM Account"
-            " WHERE (Account.id IS NOT :userid)"
+            " WHERE (Account.id != :userid)"
             " GROUP BY Account.id"
             " ORDER BY Account.username"
             " DESC").params(userid = user_id)
