@@ -6,11 +6,14 @@ Kaavio | [Kaavio!](https://raw.githubusercontent.com/Mirex97/Pelifoorumi/master/
 Dokumentaatio | [KESKEN!](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/Dokumentaatio.md)
 
 ### Viimeisimmät Github päivitykset
-- Lisätty käyttäjien listaus, jonka avulla voi katsoa ketkä ovat aktiivisia käyttäjiä.
-  - Tätä voisi rajoittaa vain niihin käyttäjiin jotka haluavat näkyä julkisesti! (Privacy!)
+- Monimutkaisia kyselyitä löytyy jokaisesta taulukosta. 
+- Ulkoasua luotu hieman mutta vaatii korjailua, pyrin lisäämään oman teeman sivulle ja myös info osion (koska tämä on pelifoorumi toiselle projektilleni!) + linkki!
 ##### **Viimeisin MAJOR päivitys**
-- Lisätty käyttäjät ja rekisteröityminen ja palstoille kommenttien kirjoittaminen
-  - Full CRUD + L käyttäjistä.
+- Lisätty osiot joita vain admin voi lisätä jonne käyttäjät voivat luoda threadit!
+  - Tarvitaan vielä threadeistä lisä kuvaus osio ja niitten muokkaus!
+- Threadit ja kommentit voi poistaa! Ainoastaan admin tai omistaja!
+- Ylläpito voi poistaa käyttäjiä ja myös ylentää! Mutta jos käyttäjä on ylennetty, tämä ei voi poistaa toista adminia!
+  - Saatan joutua luomaan vielä korkeampi arvoisen Super adminin joka hallitsee kaikkea. Mutta se ei ole ehkä tarpeen!
 
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
