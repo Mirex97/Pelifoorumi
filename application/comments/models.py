@@ -20,8 +20,7 @@ class Comment(db.Model):
     def find_comments_with_thread(thread_id):
         stmt = text("SELECT  Comment.id, Account.username, Comment.message, Comment.date_created FROM Comment"
                     " LEFT JOIN Account ON Comment.account_id = Account.id"
-                    " WHERE (Comment.thread_id IS :threadid)"
-                    " GROUP BY Comment.id"
+                    " WHERE (Comment.thread_id = :threadid)"
                     " ORDER BY Comment.date_created"
                     " DESC").params(threadid=thread_id)
         #" + str(section_id) + ")"
