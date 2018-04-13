@@ -32,9 +32,10 @@ class Thread(db.Model):
     @staticmethod
     def find_my_threads(account_id):
         #wat
-        stmt = text("SELECT  Thread.id, Thread.name, Account.username FROM Thread"
+        stmt = text("SELECT  Thread.id, Thread.name, Section.name FROM Thread"
                     " LEFT JOIN Account ON Account.id = Thread.account_id"
-                    " LEFT JOIN Section ON Section.id = Thread.section_id WHERE (Section.ID = :accountid)"
+                    " LEFT JOIN Section ON Section.id = Thread.section_id"
+                    " WHERE (Thread.account_id = :accountid)"
                     " ORDER BY Thread.date_created DESC").params(accountid=account_id)
         res = db.engine.execute(stmt)
         response = []
