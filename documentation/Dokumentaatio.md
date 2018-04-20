@@ -25,6 +25,10 @@ JOS Heroku valittaa internal server errorista, niin odota hetki ja palaa sivulle
 
 #### Käyttöohjeet jatkuvat
 
+
+LISÄOHJEET 20.4.2018:
+Navigointi osiossa löytyy Search toiminto ja sitä ennen kaksi checkboxia. Nämä toimivat mutta ei vielä kuten haluisin! Vasemman puoleinen boxi valitsee tagin ja oikea käyttäjän. Jos kummatkin poissa niin search etsii palstojen nimillä! Ja teksti on erittäin tumma näiden vieressä joka pitää saada korjattua.
+
 1. Ensiksi tulee näkymä indeksistä, ja yläpalkista voi löytää "Login", "Register", "List threads" ja "Create a new Thread".
 - Login --> kirjaudu olemassa olevaan käyttäjään.
 - Register --> Luo käyttäjä
@@ -59,6 +63,7 @@ JOS Heroku valittaa internal server errorista, niin odota hetki ja palaa sivulle
 ### Asennusohje
 Paikallista toteutusta varten Kloonaa tai lataa repositorio koneellesi (ja pura se).
 Tämän jälkeen suorita 'run.py' pythonilla ja sivun pitäisi aueta koneellesi osoitteseen 127.0.0.1:5000.
+Tai checkkaa foorumia herokussa!
 - Tarvitsen vielä tarkennusta oliko asennusohje näin lyhyt...?
 
 ### Rajoitteet
@@ -68,11 +73,7 @@ Tämän jälkeen suorita 'run.py' pythonilla ja sivun pitäisi aueta koneellesi 
 - Linkki peliin
 - Ulkonäkö
 - Thread luokan kuvaus (description) toiminnallisuus! (Helppo).
-- Tag luokan toiminnallisuus
-- Section luokan toiminnallisuus ja sen lisäys listaukseen!
-- Ylläpito ja tämän näkymät!
-- Käyttäjien ylennys
-- Palstan ja viestien sisällön muokkaus ja poisto (Tällä hetkellä vain koko käyttäjän poisto poistaa kaikki tämän viestit ja palstat).
+- Viestien muokkaus
 - Tykkäämis toiminto (Ei pakollinen!)
 
 
@@ -84,3 +85,4 @@ Ennen pääsiäistä | Hieman rauhallisempaan otteeseen vain tutustunut pythonin
 3.4.2018 | Nyt aloin vasta kunnolla erkanemaan esimerkki materiaalista ja suuntaamaan enemmän kohti omaa työtäni. Rekisteröitymisen ja autentikaation ansiosta ja myös hyvien todoappin esimerkkien kautta sain projektin kunnolla vauhtiin.
 4.4.2018 | Koko päivän tapellut pythonin kanssa!!! Aloitin klo 8:30 ja nyt klo 22 kaikki vasta pelittää :D. Ei meinannut näkyä loppua virheille, mutta nyt! Kaikki ok! Herokussa tietokannat ja käyttäjään voi kirjautua ja rekisteröityä ja luoda palstan ja lisätä kommentteja. Käyttäjistä tehty täysi CRUD. Myös omat validoinnit ettei löydy duplikaatti käyttäjiä. Nimi ja salasana voi kuitenkin olla sama paitsi käyttäjätunnus! LISÄKSI hieman Tag ja Section taulu aloitettu mutta ei vielä valmis! Sen lisään seuraavalle kerralle.
 6.4.2018 | Materiaalin ohjeistus korjattu mutta silti pitää listata jokin taulukko ja tätä en tehnyt aikaisemmin. Nyt kuitenkin käyttäjien listaus pitäisi toimia ja tämä listaa aktiiviset käyttäjät keitä foorumilta löytyy.
+20.4.2018 | Tuli hieman kiire, koska aloin pohtimaan onko Tag taulu edes hyödyllinen... Mutta! Sitten hoksasin, että se voisi olla itseasiassa erittäin hyvä foorumille. Ja nyt hieman kiireessä tein tag taulun foorumille. Lisäksi foorumilla ei ollut monesta moneen suhdetta niin sen takia se on myös hyvä!
