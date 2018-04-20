@@ -3,7 +3,9 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.threads.models import Thread
+from application.tags.models import Tag
 from application.threads.forms import ThreadForm
+from application.threads.forms import SearchForm
 from application.auth.models import User
 from application.comments.models import Comment
 from application.comments.forms import CommentForm
@@ -22,7 +24,7 @@ def threads_index():
 def threads_form():
     return render_template("threads/new.html", form = ThreadForm())
   
-@app.route("/threads/<thread_id>/", methods=["POST", "GET"])
+@app.route("/threads/<thread_id>/", methods=["GET"])
 def show_thread(thread_id):
     thread = Thread.query.get(thread_id)
     form = CommentForm()
@@ -33,6 +35,7 @@ def show_thread(thread_id):
                            owner = User.query.get(thread.account_id),
                            comments = Comment.find_comments_with_thread(thread_id),
                            form = form,
+                           tags = Tag.query.all(),
                            users = User.query.all())
 
 
@@ -53,6 +56,19 @@ def threads_create():
   
     return redirect(url_for("show_thread", thread_id=t.id))
 
+@app.route("/threads/search/", methods=["POST"])
+def threads_search():
+    form = SearchForm(request.form)
+    if form.tag.data:
+        threads = Tag.find_threads_by_tag(form.search.data)
+        return render_template("threads/search.html", threads = threads)
+    if form.select.data:
+        threads = Thread.search_threads_by_user(form.search.data)
+        return render_template("threads/search.html", threads = threads)
+    else:
+        threads = Thread.search_threads_by_thread(form.search.data)
+        return render_template("threads/search.html", threads = threads)
+        
 #Need modify!
 
 @app.route("/threads/remove/<thread_id>", methods=["POST"])

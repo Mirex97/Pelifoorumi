@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators, HiddenField
+from wtforms import TextAreaField, validators, HiddenField
 
 class CommentForm(FlaskForm):
-    message = StringField("Message", [validators.InputRequired()])
+    message = TextAreaField("Message", [validators.InputRequired(),
+                                        validators.Length(min=1, max=400, message="Too long! 400 characters limit!")])
     thread_id = HiddenField()
 
     class Meta:

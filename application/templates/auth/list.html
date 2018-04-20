@@ -1,4 +1,12 @@
 {% extends "layout.html" %} {% block body %} 
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{url_for('index')}}">Index</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Users</li>
+        </ol>
+    </nav>
 {% if not users %} No active users! Register! 
 {% else %} Active users in website!
 <table>

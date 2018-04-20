@@ -2,15 +2,21 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('section_create') }}">
-  <table>
+  <table class="table">
     <tr>
-      <td>
+      <td class="col">
         {{ form.name.label }}
       </td>
-      <td>
+      <td class="col">
         {{ form.name }}
       </td>
-      <td>
+      <td class="col">
+        {{ form.priority.label }}
+      </td>
+      <td class="col">
+        {{ form.priority }}
+      </td>
+      <td class="col">
         <ul>
           {% for error in form.name.errors %}
           <li>{{ error }}</li>
@@ -18,7 +24,7 @@
         </ul>
       </td>
     </tr>
-    <tr>
+    <tr class="col">
       <td colspan="2">
         <input type="submit" value="Create new Section" />
       </td>

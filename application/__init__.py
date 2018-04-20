@@ -13,6 +13,17 @@ else:
 
 db = SQLAlchemy(app)
 
+from os import urandom
+app.config["SECRET_KEY"] = urandom(32)
+
+from flask_login import LoginManager
+login_manager = LoginManager()
+login_manager.setup_app(app)
+
+login_manager.login_view = "auth_login"
+login_manager.login_message = "Login to use this functionality"
+
+
 from application import views
 
 from application.threads import models
@@ -27,18 +38,13 @@ from application.comments import views
 from application.sections import models
 from application.sections import views
 
+from application.tag_thread import models
+from application.tag_thread import views
+
+from application.tags import models
+from application.tags import views
 
 from application.auth.models import User
-
-from os import urandom
-app.config["SECRET_KEY"] = urandom(32)
-
-from flask_login import LoginManager
-login_manager = LoginManager()
-login_manager.setup_app(app)
-
-login_manager.login_view = "auth_login"
-login_manager.login_message = "Login to use this functionality"
 
 @login_manager.user_loader
 def load_user(user_id):

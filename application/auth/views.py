@@ -54,7 +54,7 @@ def auth_register():
     db.session().add(user)
     db.session().commit()
 
-    print("Käyttäjä " + user.name + " tunnistettiin")
+    print("User " + user.name + " recognized")
     login_user(user)
     return redirect(url_for("index"))
     
@@ -103,7 +103,8 @@ def auth_confirm():
 @app.route("/auth/promote/<user_id>", methods = ["POST"])
 @login_required
 def auth_promote(user_id):
-    #TÄHÄN CHECKKAUS!
+    if current_user.role != 'Admin':
+        return redirect(url_for("auth_list"))
     user = User.query.get(user_id)
     user.role = 'Admin'
     db.session().commit()

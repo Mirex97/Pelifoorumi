@@ -1,27 +1,39 @@
 {% extends "layout.html" %} {% block body %}
-
-<h1> Forums </h1>
-{% if current_user.role == 'Admin' %}
-<form method="GET" action="{{ url_for('section_form') }}">
-  <input type="submit" value="Create New Section!" />
-</form>
-{% endif %} {% for section in sections %}
-<div class="row justify-content-md-center">
-
-  <div class="col">
-    {{ section.name }}
-  </div>
-  <div class="col">
-    <form method="POST" action="{{ url_for('show_section', section_id=section.id) }}">
-      <input type="submit" value="Open Section!" />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{url_for('index')}}">Index</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Forums</li>
+    </ol>
+</nav>
+<div class="row">
+  <div class="col-2">
+    <h1> Forums </h1>
+    {% if current_user.role == 'Admin' %}
+    <form method="GET" action="{{ url_for('section_form') }}">
+      <input type="submit" value="Create New Section!" />
     </form>
+    {% endif %}
   </div>
-  {% if current_user.role == 'Admin' %}
+</div>
+{% for section in sections %}
+<div class="row">  
   <div class="col">
-    <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
-      <input type="submit" value="Delete Section!" />
-    </form>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{{ url_for('show_section', section_id=section.id) }}">{{ section.name }}</a>
+        </h5>
+
+        {% if current_user.role == 'Admin' %}
+        <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
+          <input type="submit" value="Delete Section!" />
+        </form>
+        {% endif %}
+      </div>
+    </div>
+
   </div>
-  {% endif %}
 </div>
 {% endfor %} {% endblock %}

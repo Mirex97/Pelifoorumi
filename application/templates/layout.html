@@ -9,44 +9,67 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="{{ url_for('index') }}">Pelifoorumi</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        {% if current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('threads_index') }}">My threads</a>
-        </li>
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('section_index')}}">Forum</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('auth_list') }}">Users</a>
-        </li>
-      </ul>
-      <div class="form-inline mt-2 mt-md-0">
-        {% if current_user.is_authenticated %} Kirjautunut nimellä {{ current_user.name }} .
-        <a href="{{ url_for('auth_view') }}">Profile information .</a>
-        <a href="{{ url_for('auth_logout') }}">Logout .</a>
-        {% else %}
-        <a href="{{ url_for('auth_login') }}">Login</a>
-        <a href="{{ url_for('auth_register') }}">Register</a>
-        {% endif %}
-
-      </div>
+  <div class="row justify-content-center">
+    <div style="display:table-cell; vertical-align:middle; text-align:center">
+      <a href="{{ url_for('index') }}">
+        <img src="{{url_for('static', filename='logo.png')}}">
+      </a>
     </div>
-  </nav>
+  </div>
+  <div class="row align-items-center">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('threads_index') }}">My threads</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('section_index')}}">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth_list') }}">Users</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" method="POST" action="/threads/search/">
+            <h6>Search by Tag or Username</h6>
+            <input type="checkbox" class="form-check-input" id="tag" name="tag">
+            <input type="checkbox" class="form-check-input" id="select" name="select">
+            <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <div class="form-inline mt-2 mt-md-0">
+            {% if current_user.is_authenticated %} Logged in as {{ current_user.name }}
+            <a href="{{ url_for('auth_view') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Profile information</a>
+            <span class="caret"></span>
+            <a href="{{ url_for('auth_logout') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Logout .</a>
+            {% else %}
+            <a href="{{ url_for('auth_login') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Login</a>
+            <span class="caret"></span>
+            <a href="{{ url_for('auth_register') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Register</a>
+            {% endif %}
+
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
   <main role="main" class="container">
     {% block body %}
     <p>
       Content.
     </p>
     {% endblock %}
+    </div>
+
   </main>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

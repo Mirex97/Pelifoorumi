@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block body %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{url_for('index')}}">Index</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Tags</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-2">
+        <h1> Tags </h1>
+        {% if current_user.role == 'Admin' %}
+        <form method="POST" action="{{ url_for('add_tag') }}">
+            {{form.name.label}}{{ form.name }}
+            <input type="submit" value="Create New Tag!" />
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% for tag in tags %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ tag.name }}
+                </h5>
+
+                {% if current_user.role == 'Admin' %}
+                <form method="POST" action="{{ url_for('tag_remove', tag_id=tag.id) }}">
+                    <input type="submit" value="Delete Tag!" />
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endfor %} {% endblock %}
