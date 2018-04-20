@@ -33,7 +33,7 @@ class Tag(db.Model):
 
     @staticmethod
     def find_with_tag(tag):
-        stmt = text("SELECT * FROM Tag WHERE (Tag.name IS :tag)").params(tag = tag)
+        stmt = text("SELECT * FROM Tag WHERE (Tag.name = :tag)").params(tag = tag)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
