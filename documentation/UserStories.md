@@ -4,7 +4,7 @@
 - Kirjautua sivulle
 - Ihailla sivun hienoa ulkonäköä!
 - Avata julkisia keskustelupalstoja (Threads). (Sivulla myös hidden palstoja, joita ei näe).
-- Kommentoida palstoja ja tykätä niistä.
+- Kommentoida palstoja ja tykätä niistä (vaihtoehtoinen).
 - Etsiä keskustelupalstoja tägien avulla.
 - Luoda keskustelupalstan (Asettaa nimen ja pääaiheen ja sijoittaa sen palstaluokkaan).
 - Muokata palstaa omistajana.
