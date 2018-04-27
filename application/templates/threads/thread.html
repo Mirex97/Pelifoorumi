@@ -13,41 +13,46 @@
 		<li class="breadcrumb-item active" aria-current="page">{{ thread.name }}</li>
 	</ol>
 </nav>
-<h3>
-	{{ thread.name }} by {{ owner.name }}
-</h3>
-<form method="POST" action="{{ url_for('tag_join', thread_id = thread.id)}}">
-	<div class="form-group">
-		<label for="tag_id">Tag</label>
-		<select name="tag_id" id="tag_id" class="form-control">
-			{% for tag in tags %}
-			<option value="{{tag.id}}">{{tag.name}}</option>
-			{% endfor %}
-		</select>
-		<button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+<div id="contain" class="jumbotron">
+	<h3>
+		{{ thread.name }} by {{ owner.name }}
+	</h3>
+	<form method="POST" action="{{ url_for('tag_join', thread_id = thread.id)}}">
+		<div class="form-group">
+			<label for="tag_id">Tag</label>
+			<select name="tag_id" id="tag_id" class="form-control">
+				{% for tag in tags %}
+				<option value="{{tag.id}}">{{tag.name}}</option>
+				{% endfor %}
+			</select>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+	<form method="POST" action="{{ url_for('comments_create') }}">
+		<div class="form-group">
+			<label>{{ form.message.label }}</label>
+			{{ form.message }} {{form.thread_id}}
+			<button type="submit" class="btn btn-primary">Add comment</button>
+		</div>
+		{% for error in form.message.errors %}
+		<div>
+			<li>{{ error }}</li>
+		</div>
+		{% endfor %}
+	</form>
+	{% if comments %} {% for comment in comments %}
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">{{ comment.username }}</h5>
+			<h6 class="card-subtitle mb-2 text-muted">{{ comment.date }}</h6>
+			<p class="card-text">{{comment.message}}</p>
+			<form method="POST" action="{{ url_for('comments_remove', comment_id=comment.id) }}">
+				<input type="submit" value="Remove Comment" />
+			</form>
+		</div>
 	</div>
-</form>
-<form method="POST" action="{{ url_for('comments_create') }}">
-	<div class="form-group">
-		<label>{{ form.message.label }}</label>
-		{{ form.message }} {{form.thread_id}}
-		<button type="submit" class="btn btn-primary">Add comment</button>
-	</div>
-	{% for error in form.message.errors %}
-	<div>
-		<li>{{ error }}</li>
-	</div>
-	{% endfor %}
-</form>
-{% if comments %} {% for comment in comments %}
-<div class="card">
-	<div class="card-body">
-		<h5 class="card-title">{{ comment.username }}</h5>
-		<h6 class="card-subtitle mb-2 text-muted">{{ comment.date }}</h6>
-		<p class="card-text">{{comment.message}}</p>
-		<form method="POST" action="{{ url_for('comments_remove', comment_id=comment.id) }}">
-			<input type="submit" value="Remove Comment" />
-		</form>
-	</div>
-</div>
-{% endfor %} {% else %} No comments! {% endif %} {% endblock %}
+
+	{% endfor %} {% else %} No comments! {% endif %} </div>{% endblock %}

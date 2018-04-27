@@ -1,39 +1,50 @@
 {% extends "layout.html" %} {% block body %}
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{{url_for('index')}}">Index</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Forums</li>
-    </ol>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{{url_for('index')}}">Index</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Forums</li>
+  </ol>
 </nav>
+
 <div class="row">
-  <div class="col-2">
-    <h1> Forums </h1>
-    {% if current_user.role == 'Admin' %}
-    <form method="GET" action="{{ url_for('section_form') }}">
-      <input type="submit" value="Create New Section!" />
-    </form>
-    {% endif %}
-  </div>
-</div>
-{% for section in sections %}
-<div class="row">  
-  <div class="col">
+  <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">
-          <a href="{{ url_for('show_section', section_id=section.id) }}">{{ section.name }}</a>
-        </h5>
-
+          <h2 class="card-title"> Forums </h2>
+          <p class="card-text">Choose a Section to view threads.</p>
         {% if current_user.role == 'Admin' %}
-        <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
-          <input type="submit" value="Delete Section!" />
+        <form method="GET" action="{{ url_for('section_form') }}">
+          <button class="btn btn-outline-success my-2 sm-0" type="submit">New Section</button>
         </form>
         {% endif %}
+        
+      </div>
+
+    </div>
+  </div>
+  <div class="col-sm-9">
+    {% for section in sections %}
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ url_for('show_section', section_id=section.id) }}">{{ section.name }}</a>
+            </h5>
+
+            {% if current_user.role == 'Admin' %}
+            <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
+              <input type="submit" value="Delete Section!" />
+            </form>
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
-
+    {% endfor %}
   </div>
+
 </div>
-{% endfor %} {% endblock %}
+{% endblock %}

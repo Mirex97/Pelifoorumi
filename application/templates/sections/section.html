@@ -10,61 +10,77 @@
         <li class="breadcrumb-item active" aria-current="page">Section</li>
     </ol>
 </nav>
-
-<h2>{{ section.name }}</h2>
-<form method="POST" action="{{ url_for('threads_create') }}">
-    <div class="form-group">
-        <label>{{ form.name.label }}</label>
-        {{ form.name }} 
-        {{form.section_id}}
-        <button type="submit" class="btn btn-primary">Create new Thread</button>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">
+            <h2>{{ section.name }}</h2>
+        </h5>
+        <form method="POST" action="{{ url_for('threads_create') }}">
+            <div class="form-group">
+                <label>{{ form.name.label }}</label>
+                {{ form.name }} {{form.section_id}}
+                <button type="submit" class="btn btn-primary">Create new Thread</button>
+            </div>
+            {% for error in form.name.errors %}
+            <div>
+                {{ error }}
+            </div>
+            {% endfor %}
+        </form>
     </div>
-    {% for error in form.name.errors %}
-    <div>
-        {{ error }}
-    </div>
-    {% endfor %}
-</form>
+</div>
 
-<table class="table">
-    <tr>
-        <th scope="col">My Threads</th>
-        <th scope="col">Open</th>
-    </tr>
-    {% for thread in mythreads %}
-    <tr>
-        <td scope="row">{{ thread.name }}</td>
-        <td>
-            <a href="{{ url_for('show_thread', thread_id=thread.id) }}">Open thread!</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
 
-<table class="table">
-    <tr>
-        <th scope="col">Thread</th>
-        <th scope="col">Owner</th>
-        <th scope="col"></th>
-    </tr>
-    {% for thread in threads %}
-    <tr>
-        <td scope="row">{{ thread.name }}</td>
-        <td>{{ thread.owner }}</td>
 
-        <td>
-            <a href="{{ url_for('show_thread', thread_id=thread.id) }}">Open thread!</a>
-        </td>
-        {% if current_user.role == 'Admin' %}
-        <td>
-            <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
-                <input type="submit" value="Delete Thread!" />
-            </form>
-        </td>
-        {% endif %}
-    </tr>
-    {% endfor %}
-</table>
+
+
+
+
+
+
+
+<div id="contain" class="jumbotron">
+    <table class="table">
+        <tr>
+            <th scope="col">My Threads</th>
+            <th scope="col">Open</th>
+        </tr>
+        {% for thread in mythreads %}
+        <tr>
+            <td scope="row">{{ thread.name }}</td>
+            <td>
+                <a href="{{ url_for('show_thread', thread_id=thread.id) }}">Open thread!</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div id="contain" class="jumbotron">
+    <table class="table">
+        <tr>
+            <th scope="col">Thread</th>
+            <th scope="col">Owner</th>
+            <th scope="col"></th>
+        </tr>
+        {% for thread in threads %}
+        <tr>
+            <td scope="row">{{ thread.name }}</td>
+            <td>{{ thread.owner }}</td>
+
+            <td>
+                <a href="{{ url_for('show_thread', thread_id=thread.id) }}">Open thread!</a>
+            </td>
+            {% if current_user.role == 'Admin' %}
+            <td>
+                <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
+                    <input type="submit" value="Delete Thread!" />
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
 
 {% endblock %}

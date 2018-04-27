@@ -7,26 +7,33 @@
     <li class="breadcrumb-item active" aria-current="page">My Threads</li>
   </ol>
 </nav>
-{% if mythreads %}
-<table class="table">
-  <tr>
-    <th scope="col">Thread Name</th>
-    <th scope="col">In Section</th>
-    <th scope="col">Remove</th>
-  </tr>
-  {% for thread in mythreads %}
-  <tr>
-    <td scope="row">
-      <a href="{{ url_for('show_thread', thread_id=thread.id) }}">{{ thread.name }}</a>
-    </td>
-    <td>{{ thread.section }}</td>
-    <td>
-      <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
-        <input type="submit" value="Delete Thread!" />
-      </form>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="card">
+  <div class="card-body">
+    {% if mythreads %}
 
-{% else %} No Threads found! {% endif %} {% endblock %}
+    <table class="table">
+      <tr>
+        <th scope="col">Thread Name</th>
+        <th scope="col">In Section</th>
+        <th scope="col">Remove</th>
+      </tr>
+      {% for thread in mythreads %}
+      <tr>
+        <td scope="row">
+          <a href="{{ url_for('show_thread', thread_id=thread.id) }}">{{ thread.name }}</a>
+        </td>
+        <td>{{ thread.section }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
+            <input type="submit" value="Delete Thread!" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %} No Threads found! {% endif %}
+
+  </div>
+</div>
+{% endblock %}
