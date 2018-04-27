@@ -20,7 +20,7 @@ class Thread(db.Model):
     section_id = db.Column(db.Integer, db.ForeignKey('section.id'),
                            nullable=False)
 
-    tags = db.relationship("Tag_Thread", backref='thread', lazy=True)
+    tags = db.relationship("Tag_Thread", backref='thread', lazy=True, cascade="delete")
     
     comments = db.relationship("Comment", backref='thread', lazy=True, cascade="delete")
     
