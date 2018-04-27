@@ -23,7 +23,7 @@ class Tag(db.Model):
                     " LEFT JOIN Section ON Section.id = Thread.section_id"
                     " LEFT JOIN Tag_Thread ON Thread.id = Tag_Thread.thread_id"
                     " LEFT JOIN Tag ON Tag.id = Tag_Thread.tag_id"
-                    " WHERE (Tag.name IS :tag)"
+                    " WHERE (Tag.name = :tag)"
                     " ORDER BY Thread.date_created DESC").params(tag = tag)
         res = db.engine.execute(stmt)
         response = []
