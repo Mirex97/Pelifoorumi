@@ -44,7 +44,6 @@ class User(db.Model):
     @staticmethod
     def find_usernames():
         stmt = text("SELECT account.id, account.username, account.role FROM account"
-            " GROUP BY account.id"
             " ORDER BY account.username"
             " DESC")
         res = db.engine.execute(stmt)
@@ -57,7 +56,6 @@ class User(db.Model):
     def find_users_not_me(user_id):
         stmt = text("SELECT account.id, account.username, account.role FROM account"
             " WHERE (account.id != :userid)"
-            " GROUP BY account.id"
             " ORDER BY account.username"
             " DESC").params(userid = user_id)
         res = db.engine.execute(stmt)
