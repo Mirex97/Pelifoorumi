@@ -1,4 +1,3 @@
-import bcrypt
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -15,17 +14,9 @@ def auth_login():
     form = LoginForm(request.form)
     
     
-    user = User.query.filter_by(username=form.username.data).first()
+    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
         print("DIDNT FIND USER")
-        return render_template("auth/loginform.html", form = form,
-                               error = "No such username or password")
-    password = form.password.data.encode()
-    checker = bcrypt.checkpw(password, user.password)
-    
-
-    if not checker:
-        print("WRONG PASSWORD")
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
         
@@ -63,12 +54,8 @@ def auth_register():
         return render_template("auth/register.html", form = form)
 
 
-    password = form.password.data.encode()
-
-    hashpw = bcrypt.hashpw(password, bcrypt.gensalt())
-
     
-    user = User(form.name.data, form.username.data, hashpw)
+    user = User(form.name.data, form.username.data, form.password.data)
     db.session().add(user)
     db.session().commit()
 
