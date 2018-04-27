@@ -2,7 +2,7 @@ from application import db
 from sqlalchemy.sql import text
 
 class Thread(db.Model):
-    __tablename__ = "Thread"
+    __tablename__ = "thread"
     
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -14,15 +14,15 @@ class Thread(db.Model):
     hidden = db.Column(db.Boolean, nullable=False)
     pinned = db.Column(db.Boolean, nullable=False)
     
-    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'),
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-    section_id = db.Column(db.Integer, db.ForeignKey('Section.id'),
+    section_id = db.Column(db.Integer, db.ForeignKey('section.id'),
                            nullable=False)
 
-    tags = db.relationship("Tag_Thread", backref='Thread', lazy=True)
+    tags = db.relationship("Tag_Thread", backref='thread', lazy=True)
     
-    comments = db.relationship("Comment", backref='Thread', lazy=True, cascade="delete")
+    comments = db.relationship("Comment", backref='thread', lazy=True, cascade="delete")
     
     def __init__(self, name):
         self.name = name
@@ -32,11 +32,11 @@ class Thread(db.Model):
 
     @staticmethod
     def search_threads_by_thread(search):
-        stmt = text("SELECT Thread.id, Thread.name, Account.username, Section.name FROM Thread"
-                    " LEFT JOIN Account ON Account.id = Thread.account_id"
-                    " LEFT JOIN Section ON Section.id = Thread.section_id"
-                    " WHERE (Thread.name LIKE :search)"
-                    " ORDER BY Thread.date_created DESC").params(search='%'+search+'%')
+        stmt = text("SELECT thread.id, thread.name, account.username, section.name, thread.date_created FROM thread"
+                    " LEFT JOIN account ON account.id = thread.account_id"
+                    " LEFT JOIN section ON section.id = thread.section_id"
+                    " WHERE (thread.name LIKE :search)"
+                    " ORDER BY thread.date_created DESC").params(search='%'+search+'%')
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -45,11 +45,11 @@ class Thread(db.Model):
 
     @staticmethod
     def search_threads_by_user(user):
-        stmt = text("SELECT Thread.id, Thread.name, Account.username, Section.name FROM Thread"
-                    " LEFT JOIN Account ON Account.id = Thread.account_id"
-                    " LEFT JOIN Section ON Section.id = Thread.section_id"
-                    " WHERE Account.username LIKE :user"
-                    " ORDER BY Thread.date_created DESC").params(user='%'+user+'%')
+        stmt = text("SELECT thread.id, thread.name, account.username, section.name FROM thread"
+                    " LEFT JOIN account ON account.id = thread.account_id"
+                    " LEFT JOIN section ON section.id = thread.section_id"
+                    " WHERE account.username LIKE :user"
+                    " ORDER BY thread.date_created DESC").params(user='%'+user+'%')
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -58,11 +58,11 @@ class Thread(db.Model):
 
     @staticmethod
     def find_my_threads(account_id):
-        stmt = text("SELECT  Thread.id, Thread.name, Section.name FROM Thread"
-                    " LEFT JOIN Account ON Account.id = Thread.account_id"
-                    " LEFT JOIN Section ON Section.id = Thread.section_id"
-                    " WHERE (Thread.account_id = :accountid)"
-                    " ORDER BY Thread.date_created DESC").params(accountid=account_id)
+        stmt = text("SELECT  thread.id, thread.name, section.name FROM thread"
+                    " LEFT JOIN account ON account.id = thread.account_id"
+                    " LEFT JOIN section ON section.id = thread.section_id"
+                    " WHERE (thread.account_id = :accountid)"
+                    " ORDER BY thread.date_created DESC").params(accountid=account_id)
         res = db.engine.execute(stmt)
         response = []
         for row in res:

@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 class Tag(db.Model):
 
-    __tablename__ = "Tag"
+    __tablename__ = "tag"
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modifed = db.Column(db.DateTime, default=db.func.current_timestamp(),
@@ -11,20 +11,20 @@ class Tag(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
 
-    threads = db.relationship("Tag_Thread", backref='Tag', lazy=True, cascade='delete')
+    threads = db.relationship("Tag_Thread", backref='tag', lazy=True, cascade='delete')
 
     def __init__(self, name):
         self.name = name
 
     @staticmethod
     def find_threads_by_tag(tag):
-        stmt = text("SELECT DISTINCT Thread.id, Thread.name, Account.username, Section.name, Thread.date_created FROM Thread"
-                    " LEFT JOIN Account ON Account.id = Thread.account_id"
-                    " LEFT JOIN Section ON Section.id = Thread.section_id"
-                    " LEFT JOIN Tag_Thread ON Thread.id = Tag_Thread.thread_id"
-                    " LEFT JOIN Tag ON Tag.id = Tag_Thread.tag_id"
-                    " WHERE (Tag.name = :tag)"
-                    " ORDER BY Thread.date_created DESC").params(tag = tag)
+        stmt = text("SELECT DISTINCT thread.id, thread.name, account.username, section.name, thread.date_created FROM thread"
+                    " LEFT JOIN account ON account.id = thread.account_id"
+                    " LEFT JOIN section ON section.id = thread.section_id"
+                    " LEFT JOIN tag_thread ON thread.id = tag_thread.thread_id"
+                    " LEFT JOIN tag ON tag.id = tag_thread.tag_id"
+                    " WHERE (tag.name = :tag)"
+                    " ORDER BY thread.date_created DESC").params(tag = tag)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -33,7 +33,7 @@ class Tag(db.Model):
 
     @staticmethod
     def find_with_tag(tag):
-        stmt = text("SELECT * FROM Tag WHERE (Tag.name = :tag)").params(tag = tag)
+        stmt = text("SELECT * FROM tag WHERE (tag.name = :tag)").params(tag = tag)
         res = db.engine.execute(stmt)
         response = []
         for row in res:

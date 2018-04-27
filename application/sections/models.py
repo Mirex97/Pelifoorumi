@@ -2,7 +2,7 @@ from application import db
 from sqlalchemy.sql import text
 
 class Section(db.Model):
-    __tablename__ = "Section"
+    __tablename__ = "section"
 
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -12,7 +12,7 @@ class Section(db.Model):
     name = db.Column(db.String(144), nullable=False)
     priority = db.Column(db.Integer, nullable=False)
 
-    threads = db.relationship("Thread", backref='Section', lazy=True, cascade="delete")
+    threads = db.relationship("Thread", backref='section', lazy=True, cascade="delete")
     
 
     def __init__(self, name):
@@ -21,8 +21,8 @@ class Section(db.Model):
 
     @staticmethod
     def find_sections_by_priority():
-        stmt = text("SELECT Section.id, Section.name, Section.priority FROM Section"
-                    " ORDER BY Section.priority")
+        stmt = text("SELECT section.id, section.name, section.priority FROM section"
+                    " ORDER BY section.priority")
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -31,10 +31,10 @@ class Section(db.Model):
 
     @staticmethod
     def find_threads_with_section(section_id):
-        stmt = text("SELECT  Thread.id, Thread.name, Account.username FROM Thread"
-                    " LEFT JOIN Account ON Thread.account_id = Account.id"
-                    " WHERE (Thread.section_id = :sectionid)"
-                    " ORDER BY Thread.date_created"
+        stmt = text("SELECT  thread.id, thread.name, account.username FROM thread"
+                    " LEFT JOIN account ON thread.account_id = account.id"
+                    " WHERE (thread.section_id = :sectionid)"
+                    " ORDER BY thread.date_created"
                     " DESC").params(sectionid=section_id)
         
         res = db.engine.execute(stmt)

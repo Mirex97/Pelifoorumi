@@ -2,7 +2,7 @@ from application import db
 from sqlalchemy.sql import text
 
 class Comment(db.Model):
-    __tablename__ = "Comment"
+    __tablename__ = "comment"
 
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -11,18 +11,18 @@ class Comment(db.Model):
 
     message = db.Column(db.String(400), nullable=False)
     
-    thread_id = db.Column(db.Integer, db.ForeignKey('Thread.id'), nullable=False)
-    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'), nullable=False)
+    thread_id = db.Column(db.Integer, db.ForeignKey('thread.id'), nullable=False)
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
     def __init__(self, message):
         self.message = message
 
     @staticmethod
     def find_comments_with_thread(thread_id):
-        stmt = text("SELECT  Comment.id, Account.username, Comment.message, Comment.date_created FROM Comment"
-                    " LEFT JOIN Account ON Comment.account_id = Account.id"
-                    " WHERE (Comment.thread_id = :threadid)"
-                    " ORDER BY Comment.date_created"
+        stmt = text("SELECT  comment.id, account.username, comment.message, comment.date_created FROM comment"
+                    " LEFT JOIN account ON comment.account_id = account.id"
+                    " WHERE (comment.thread_id = :threadid)"
+                    " ORDER BY comment.date_created"
                     " DESC").params(threadid=thread_id)
         #" + str(section_id) + ")"
         res = db.engine.execute(stmt)
