@@ -1,36 +1,18 @@
 {% extends "layout.html" %} {% block body %}
 
-<table>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Username
-        </th>
-        <th>
-            Role
-        </th>
-        <th>
-            Date Joined
-        </th>
-    </tr>
-    <tr>
-        <td>
-            {{ user.name }}
-        </td>
-        <td>
-            {{ user.username }}
-        </td>
-        <td>
-            {{ user.role }}
-        </td>
-        <td>
-            {{user.date_created}}
-        </td>
-    </tr>
 
-    <form method="GET" action="{{ url_for('auth_modify') }}">
-        <input type="submit" value="Modify" />
-    </form>
-    {% endblock %}
+<div class="row justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.name }}</h5>
+            <p class="card-text">Username: {{ user.username }}</p>
+            <p class="card-text">Role: {{ user.role }}</p>
+            <p class="card-text">Joined: {{user.date_created}}</p>
+            <form method="GET" action="{{ url_for('auth_modify') }}">
+                <button type="submit" class="btn btn-primary">Modify</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
