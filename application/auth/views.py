@@ -20,9 +20,11 @@ def auth_login():
         print("DIDNT FIND USER")
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
-    passw = form.password.data.encode()
+    password = form.password.data.encode()
+    checker = bcrypt.checkpw(password, user.password)
+    
 
-    if not bcrypt.checkpw(passw, user.password):
+    if not checker:
         print("WRONG PASSWORD")
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
@@ -61,9 +63,11 @@ def auth_register():
         return render_template("auth/register.html", form = form)
 
 
-    passw = form.password.data.encode()
+    password = form.password.data.encode()
+
+    hashpw = bcrypt.hashpw(password, bcrypt.gensalt())
+
     
-    hashpw = bcrypt.hashpw(passw, bcrypt.gensalt())
     user = User(form.name.data, form.username.data, hashpw)
     db.session().add(user)
     db.session().commit()
