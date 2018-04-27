@@ -62,6 +62,7 @@ def auth_register():
 
 
     passw = form.password.data.encode()
+    
     hashpw = bcrypt.hashpw(passw, bcrypt.gensalt())
     user = User(form.name.data, form.username.data, hashpw)
     db.session().add(user)
