@@ -5,15 +5,21 @@ User storyt | [Stories!](https://github.com/Mirex97/Pelifoorumi/blob/master/docu
 Kaavio | [Kaavio!](https://raw.githubusercontent.com/Mirex97/Pelifoorumi/master/documentation/Tietokanta.png)
 Dokumentaatio | [KESKEN!](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/Dokumentaatio.md)
 
-### Viimeisimmät Github päivitykset
-- Lisätty tagit jotka toimivat mutta ovat hieman hankalasti saavutettavissa tällä hetkellä!
-- Tagit sisältävät monesta moneen suhteen palstojen välillä!
+### Ongelmia
+
+
+- Yritin lisätä bcryptiä salasanoille, mutta tämä osoittautui jostain syystä mahdottomaksi Herokussa! Väittää ettei salasana ole enkoodattu vaikka tallensin sen käyttäen bcryptin omia metodeita. Sovellus toimi lokaalisti omalla koneellani ja se osasi myös lukea cryptatun salasanan oikein.
+  - En ymmärrä mikä Herokussa on vikana, mutta mistään ei löydy ohjeita tai apua tähän ongelmaan. Joten poistin koko cryptauksen, jonka kanssa tappelin yli 5h. 
+    - Onko oma Herokuni jotenkin onnistunut sekoittamaan itsensä, koska se on mahdottoman surkeampi kuin pyörittää lokaalisti koneella.
+- Lisäksi Herokussa on koko ajan SSL ongelmia, kun yritän kirjautua sisään. Tähänkään en ole löytänyt vastausta.
+
+### Viimeisin päivitys
+- Päivitetty ulkonäköä
+- Korjattu Tagi taulu
+- Korjattu koodikatselmoinnissa huomattuja virheitä
+
 #### Puuttuvat toiminnallisuudet jotka jäivät kesken:
 - Threadin muokkaaminen ja kuvauksen asettaminen, palstan asettaminen piilotetuksi. Niitä en ehtinyt lisäämään mutta ovat kuitenkin olemassa. 
-
-##### **Viimeisin MAJOR päivitys**
-- Muokattu ulkonäköä ja myös tehty muutamia korjauksia joita palautuksessa mainittiin.
-- Tein autorisoinnin toisin lisäämällä roolit käyttäjille. Koska rooleja on vain kaksi "Admin" ja "Default" niin en nähnyt tarpeen tehdä koko autorisointia uudelleen vaikka se toimii tällä hetkellä erittäin hyvin vaikka itse sanon!
 
 # Pelifoorumi
 Pelifoorumi, johon käyttäjä voi rekisteröityä ja kirjautua. Foorumilla käyttäjä voi kommentoida / luoda keskustelupalstoja, joilla on
