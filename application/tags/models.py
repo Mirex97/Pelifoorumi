@@ -18,7 +18,7 @@ class Tag(db.Model):
 
     @staticmethod
     def find_threads_by_tag(tag):
-        stmt = text("SELECT DISTINCT Thread.id, Thread.name, Account.username, Section.name FROM Thread"
+        stmt = text("SELECT DISTINCT Thread.id, Thread.name, Account.username, Section.name, Thread.date_created FROM Thread"
                     " LEFT JOIN Account ON Account.id = Thread.account_id"
                     " LEFT JOIN Section ON Section.id = Thread.section_id"
                     " LEFT JOIN Tag_Thread ON Thread.id = Tag_Thread.thread_id"
