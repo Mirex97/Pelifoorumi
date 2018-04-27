@@ -63,7 +63,7 @@ def auth_register():
         return render_template("auth/register.html", form = form)
 
 
-    passw = form.password.data.encode('utf8')
+    passw = form.password.data.encode()
     
     hashpw = bcrypt.hashpw(passw, bcrypt.gensalt())
     user = User(form.name.data, form.username.data, hashpw)
