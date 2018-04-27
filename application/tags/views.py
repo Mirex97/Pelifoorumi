@@ -33,7 +33,7 @@ def add_tag():
     if tags:
         return render_template("tags/new.html", form = TagForm())
     if not form.validate():
-        return render_tempalte("tags/new.html", form = form)
+        return render_template("tags/new.html", form = form)
     t = Tag(form.name.data)
     db.session().add(t)
     db.session().commit()

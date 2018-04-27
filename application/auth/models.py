@@ -2,8 +2,7 @@ from application import db
 from sqlalchemy.sql import text
 
 class User(db.Model):
-
-    __tablename__ = "account"
+    __tablename__ = "Account"
   
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -15,8 +14,8 @@ class User(db.Model):
     password = db.Column(db.String(144), nullable=False)
     role = db.Column(db.String(144), nullable=False)
 
-    comments = db.relationship("Comment", backref='account', lazy=True, cascade="delete")
-    threads = db.relationship("Thread", backref='account', lazy=True, cascade="delete")
+    comments = db.relationship("Comment", backref='Account', lazy=True, cascade="delete")
+    threads = db.relationship("Thread", backref='Account', lazy=True, cascade="delete")
     
 
     def __init__(self, name, username, password):

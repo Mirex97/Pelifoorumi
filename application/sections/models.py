@@ -2,7 +2,7 @@ from application import db
 from sqlalchemy.sql import text
 
 class Section(db.Model):
-    __tablename__ = "section"
+    __tablename__ = "Section"
 
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -12,7 +12,7 @@ class Section(db.Model):
     name = db.Column(db.String(144), nullable=False)
     priority = db.Column(db.Integer, nullable=False)
 
-    threads = db.relationship("Thread", backref='section', lazy=True, cascade="delete")
+    threads = db.relationship("Thread", backref='Section', lazy=True, cascade="delete")
     
 
     def __init__(self, name):

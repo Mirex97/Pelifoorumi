@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 class Tag(db.Model):
 
-    __tablename__ = "tag"
+    __tablename__ = "Tag"
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modifed = db.Column(db.DateTime, default=db.func.current_timestamp(),
@@ -11,7 +11,7 @@ class Tag(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
 
-    threads = db.relationship("Tag_Thread", backref='tag', lazy=True, cascade='delete')
+    threads = db.relationship("Tag_Thread", backref='Tag', lazy=True, cascade='delete')
 
     def __init__(self, name):
         self.name = name

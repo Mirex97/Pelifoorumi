@@ -1,3 +1,4 @@
+import bcrypt
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 
@@ -10,13 +11,22 @@ def auth_login():
     if request.method == "GET":
         return render_template("auth/loginform.html", form = LoginForm())
 
+    
     form = LoginForm(request.form)
-
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    
+    
+    user = User.query.filter_by(username=form.username.data).first()
     if not user:
+        print("DIDNT FIND USER")
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
+    passw = form.password.data.encode()
 
+    if not bcrypt.checkpw(passw, user.password):
+        print("WRONG PASSWORD")
+        return render_template("auth/loginform.html", form = form,
+                               error = "No such username or password")
+        
     print("Käyttäjä " + user.name + " tunnistettiin")
     login_user(user)
     return redirect(url_for("index"))
@@ -49,8 +59,11 @@ def auth_register():
 
     if not form.validate():
         return render_template("auth/register.html", form = form)
-    
-    user = User(form.name.data, form.username.data, form.password.data)
+
+
+    passw = form.password.data.encode()
+    hashpw = bcrypt.hashpw(passw, bcrypt.gensalt())
+    user = User(form.name.data, form.username.data, hashpw)
     db.session().add(user)
     db.session().commit()
 

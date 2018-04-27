@@ -65,14 +65,14 @@ def section_create():
 @app.route("/sections/edit", methods=["POST"])
 @login_required
 def section_edit():
-    form = SectionForm(reguest.form)
+    form = SectionForm(request.form)
     if not form.validate():
-        return redirect(url_for("show_section"), section_id = form.section_id)
-    s = Section.query.get(section_id)
+        return redirect(url_for("show_section", section_id = form.section_id))
+    s = Section.query.get(form.section_id)
     s.name = form.name
     s.priority = form.priority
     db.session().commit()
-    return redirect(url_for("show_section"), section_id = form.section_id)
+    return redirect(url_for("show_section", section_id = form.section_id))
 
 @app.route("/sections/remove/<section_id>", methods=["POST"])
 @login_required

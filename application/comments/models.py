@@ -2,6 +2,7 @@ from application import db
 from sqlalchemy.sql import text
 
 class Comment(db.Model):
+    __tablename__ = "Comment"
 
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -10,8 +11,8 @@ class Comment(db.Model):
 
     message = db.Column(db.String(400), nullable=False)
     
-    thread_id = db.Column(db.Integer, db.ForeignKey('thread.id'), nullable=False)
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
+    thread_id = db.Column(db.Integer, db.ForeignKey('Thread.id'), nullable=False)
+    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'), nullable=False)
 
     def __init__(self, message):
         self.message = message

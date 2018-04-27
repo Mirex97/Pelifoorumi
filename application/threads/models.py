@@ -2,6 +2,8 @@ from application import db
 from sqlalchemy.sql import text
 
 class Thread(db.Model):
+    __tablename__ = "Thread"
+    
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
@@ -12,15 +14,15 @@ class Thread(db.Model):
     hidden = db.Column(db.Boolean, nullable=False)
     pinned = db.Column(db.Boolean, nullable=False)
     
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+    account_id = db.Column(db.Integer, db.ForeignKey('Account.id'),
                            nullable=False)
 
-    section_id = db.Column(db.Integer, db.ForeignKey('section.id'),
+    section_id = db.Column(db.Integer, db.ForeignKey('Section.id'),
                            nullable=False)
 
-    tags = db.relationship("Tag_Thread", backref='thread', lazy=True)
+    tags = db.relationship("Tag_Thread", backref='Thread', lazy=True)
     
-    comments = db.relationship("Comment", backref='thread', lazy=True, cascade="delete")
+    comments = db.relationship("Comment", backref='Thread', lazy=True, cascade="delete")
     
     def __init__(self, name):
         self.name = name
