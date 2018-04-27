@@ -11,7 +11,7 @@ class User(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
-    password = db.Column(db.String(144))
+    password = db.Column(db.String(75))
     role = db.Column(db.String(144), nullable=False)
 
     comments = db.relationship("Comment", backref='account', lazy=True, cascade="delete")

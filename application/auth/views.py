@@ -22,8 +22,6 @@ def auth_login():
                                error = "No such username or password")
     passw = form.password.data.encode()
 
-    print(user.password)
-
     if not bcrypt.checkpw(passw, user.password):
         print("WRONG PASSWORD")
         return render_template("auth/loginform.html", form = form,
