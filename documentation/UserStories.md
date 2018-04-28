@@ -5,10 +5,10 @@
 - [x] Asettaa käyttälle uniikin nimen ja muita tietoja.
 - [x] Kirjautua sivulle
 - [x] Ihailla sivun hienoa ulkonäköä!
-- *[x] Avata julkisia keskustelupalstoja (Threads). (Sivulla myös hidden palstoja, joita ei näe). <-- Tämä vielä kesken.
-- *[x] Kommentoida palstoja ja tykätä niistä (vaihtoehtoinen). (Tykkäys ei implementoitu.)
-- *[x] Etsiä keskustelupalstoja tägien avulla. (Toimii, mutta tagien lisäys puuttuu normi käyttäjiltä).
-- *[x] Luoda keskustelupalstan (Asettaa nimen ja pääaiheen ja sijoittaa sen palstaluokkaan). (Tarvitsee vielä description kentän).
+- [x] * Avata julkisia keskustelupalstoja (Threads). (Sivulla myös hidden palstoja, joita ei näe). <-- Tämä vielä kesken.
+- [x] * Kommentoida palstoja ja tykätä niistä (vaihtoehtoinen). (Tykkäys ei implementoitu.)
+- [x] * Etsiä keskustelupalstoja tägien avulla. (Toimii, mutta tagien lisäys puuttuu normi käyttäjiltä).
+- [x] * Luoda keskustelupalstan (Asettaa nimen ja pääaiheen ja sijoittaa sen palstaluokkaan). (Tarvitsee vielä description kentän).
 - [x] Muokata palstaa omistajana.
 - [x] Lisätä tekstiä ja kommentteja ja myös poistaa niitä.
 - [x] Kirjautua ulos
