@@ -8,7 +8,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
 
-
+  <style>
+    #meh {
+      background-image: url("{{url_for('static', filename='background.png')}}")
+    }
+  </style>
 
 </head>
 
@@ -18,8 +22,7 @@
   <div class="row">
     <div id="contain" class="col-sm-2" style="background-color:rgba(255, 255, 255, 0.404);"></div>
     <div id="contain" class="col-sm-8">
-
-      <div class="row justify-content-center" style="background-color:rgba(32, 97, 63, 0.973);">
+      <div id="meh" class="row justify-content-center" style="background-color:rgba(32, 97, 63, 0.973);">
         <div style="display:table-cell; vertical-align:middle; text-align:center">
           <a href="{{ url_for('index') }}">
             <img src="{{url_for('static', filename='logo.png')}}">
@@ -93,8 +96,21 @@
         </div>
       </main>
 
-      <div class="jumbotron text-center" style="margin-bottom:0">
-        <p>Footer</p>
+      <div class="jumbotron text-center bg-dark mb-2 text-light" style="margin-bottom:0">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-1">
+            <div class="row justify-content-center">
+              <div style="display:table-cell; vertical-align:middle; text-align:center">
+                <img class="display-3" src="{{url_for('static', filename='pc.png')}}" width="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3">
+            <p class="text-center text-white">© Copyright 2018 Rex Industries - All rights reserved. </p>
+          </div>
+        </div>
       </div>
     </div>
     <div id="contain" class="col-sm-2" style="background-color:rgba(255, 255, 255, 0.404);"></div>

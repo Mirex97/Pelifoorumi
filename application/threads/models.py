@@ -35,7 +35,7 @@ class Thread(db.Model):
         stmt = text("SELECT thread.id, thread.name, account.username, section.name, thread.date_created FROM thread"
                     " LEFT JOIN account ON account.id = thread.account_id"
                     " LEFT JOIN section ON section.id = thread.section_id"
-                    " WHERE (thread.name LIKE :search)"
+                    " WHERE LOWER(thread.name) LIKE LOWER(:search)"
                     " ORDER BY thread.date_created DESC").params(search='%'+search+'%')
         res = db.engine.execute(stmt)
         response = []
@@ -48,7 +48,7 @@ class Thread(db.Model):
         stmt = text("SELECT thread.id, thread.name, account.username, section.name FROM thread"
                     " LEFT JOIN account ON account.id = thread.account_id"
                     " LEFT JOIN section ON section.id = thread.section_id"
-                    " WHERE account.username LIKE :user"
+                    " WHERE LOWER(account.username) LIKE LOWER(:user)"
                     " ORDER BY thread.date_created DESC").params(user='%'+user+'%')
         res = db.engine.execute(stmt)
         response = []

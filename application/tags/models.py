@@ -23,7 +23,7 @@ class Tag(db.Model):
                     " LEFT JOIN section ON section.id = thread.section_id"
                     " LEFT JOIN tag_thread ON thread.id = tag_thread.thread_id"
                     " LEFT JOIN tag ON tag.id = tag_thread.tag_id"
-                    " WHERE (tag.name = :tag)"
+                    " WHERE LOWER(tag.name) LIKE LOWER(:tag)"
                     " ORDER BY thread.date_created DESC").params(tag = tag)
         res = db.engine.execute(stmt)
         response = []

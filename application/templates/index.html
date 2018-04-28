@@ -1,12 +1,111 @@
-﻿{% extends "layout.html" %}
-{% block body %}
+﻿{% extends "layout.html" %} {% block body %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Index</li>
     </ol>
 </nav>
+<style>
+    .display-4 {
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: pixelated;
+    }
+</style>
 <div class="jumbotron">
-  <h1 class="display-4">Pelifoorumi</h1>
-  <p class="lead">By Mikael</p>
+
+    <div class="row justify-content-center">
+        <div style="display:table-cell; vertical-align:middle; text-align:center">
+            <img class="display-4" src="{{url_for('static', filename='logo.png')}}" width="1000">
+            <p class="lead">Created By Mikael Kukkamäki
+                <br>Music by Tuukka Oikarinen</p>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm">
+        <div class="jumbotron text-light " style="height: 99%">
+            <div class="row justify-content-center">
+                <div style="display:table-cell; vertical-align:middle; text-align:center; color: rgb(73, 73, 73)">
+                    <h2 class="display-4">Unforgettable Adventure</h2>
+                    <p>Year 2018, a lone Student has stumbled upon a great adventure that the new world (aka Uusimaa) has yet
+                        to experience.</p>
+                    <p>Fight your way to Kerava as the Protagonist while dodging Conductors and Hobos +
+                        Seaguls and fearsome Bosses!
+                    </p>
+                    <p>Remember this is not just any kind of adventure! This is...</p>
+                    <h4>VR THE ADVENTURE</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="jumbotron" style="height: 99%">
+            <div class="row justify-content-center">
+                <div style="display:table-cell; vertical-align:middle; text-align:center">
+                    <img class="display-4" src="{{url_for('static', filename='idle.gif')}}" width="200">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <div class="jumbotron" style="height: 99%">
+            <div class="row justify-content-center">
+                <div style="display:table-cell; vertical-align:middle; text-align:center">
+                    <img class="display-4" src="{{url_for('static', filename='confused.gif')}}" width="200">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="jumbotron text-light " style="height: 99%">
+            <div class="row justify-content-center">
+                <div style="display:table-cell; vertical-align:middle; text-align:center; color: rgb(73, 73, 73)">
+                    <h2 class="display-4">Objective!</h2>
+                    <p>Our protagonist doesnt have enough money to load his traveling card!</p>
+                    <p>Your mission is to help the Student across the New World!</p>
+                    <p>While you travel be on a look out for coins! They aid your Quest.</p>
+                    <p>The Conductors will start checking tickets when the time runs out.</p>
+                    <p>This means there's no time to idle! The finish line is at the other end of the train!</p>
+                    <p>And the next station awaits you!</p>
+                    <h2>Will you Succeed or Fail!</h2>
+                    <p>Download link is down below...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm">
+        <div class="jumbotron" style="height: 99%">
+            <div class="row justify-content-center">
+                <div style="display:table-cell; vertical-align:middle; text-align:center">
+                    <img class="display-4" src="{{url_for('static', filename='K-Juna.gif')}}" width="1000" style="width: auto">
+                    <h2 class="display-4">Download Links</h2>
+
+                    <div>
+                        <a href="https://github.com/Mirex97/2D-Scroller-otm-harjoitustyo/releases/download/viikko5/VR_The_Adventure-1.0-launcher.jar"
+                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">VR_The_Adventure-1.0-launcher.jar</a>
+                        <p>Direct Download Link
+                            <br>Currently Game works only on Windows!<br>
+                        Linux update will be added shortly.</p>
+                    </div>
+                    <a href="https://github.com/Mirex97/2D-Scroller-otm-harjoitustyo" class="btn btn-primary btn-sm" role="button" aria-pressed="true">GitHub Otm-Harjoitustyö</a>
+                    <p>GitHub Repository</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <embed src="{{url_for('static', filename='DESTINY.mp3')}}" autostart="true" loop="true" width="2" height="0">
+    </embed>
 </div>
 {% endblock %}
