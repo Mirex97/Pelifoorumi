@@ -23,8 +23,8 @@ class Tag(db.Model):
                     " LEFT JOIN section ON section.id = thread.section_id"
                     " LEFT JOIN tag_thread ON thread.id = tag_thread.thread_id"
                     " LEFT JOIN tag ON tag.id = tag_thread.tag_id"
-                    " WHERE LOWER(tag.name) LIKE LOWER(:tag)"
-                    " ORDER BY thread.date_created DESC").params(tag = tag)
+                    " WHERE LOWER(tag.name) LIKE LOWER(:tagi)"
+                    " ORDER BY thread.date_created DESC").params(tagi = tag)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -33,7 +33,7 @@ class Tag(db.Model):
 
     @staticmethod
     def find_with_tag(tag):
-        stmt = text("SELECT * FROM tag WHERE (tag.name = :tag)").params(tag = tag)
+        stmt = text("SELECT * FROM tag WHERE (tag.name = :tagi)").params(tagi = tag)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
