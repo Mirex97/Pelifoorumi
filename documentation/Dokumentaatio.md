@@ -18,7 +18,7 @@ Tag:in avulla voidaan etsiä samaan aihepiiriin liittyviä palstoja. Ja näin my
 Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle palstalle ja sen avulla palstat voidaan luokitella eri osioihin. Joten Section on Threadien vanhempi.
 
 ### Käyttöohje
-Linkki foorumille --> Foorumi[https://mirex-pelifoorumi.herokuapp.com/]
+Linkki foorumille --> [Foorumi](https://mirex-pelifoorumi.herokuapp.com/)
 
 ##### Navbar
 - Tämä on oleellisin osa sivua ja käyttäjän paras ystävä.
