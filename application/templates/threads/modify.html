@@ -1,0 +1,65 @@
+{% extends "layout.html" %} {% block body %} {{ error }}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{url_for('index')}}">Index</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{url_for('section_index')}}">Forums</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ url_for('show_section', section_id=thread.section_id) }}">{{ section.name }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{ thread.name }}</li>
+    </ol>
+</nav>
+
+
+<div class="row justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Modify</h5>
+            <form method="POST" autocomplete="off" action="{{ url_for('thread_modify', thread_id = thread.id) }}">
+                <div class="form-group">
+                    {{ form.name.label }} (2-40 chars)
+                    <br> {{ form.name }}
+                </div>
+                <div class="form-group">
+                    {{form.desc.label}}
+                    <textarea class="form-control" name="{{ form.desc.name }}" id="{{form.desc.id}}" rows="3" data-="{{ form.desc.data }}"></textarea>
+                    <p>
+                            <span id="wordCount">400</span> characters
+                        </p>
+                </div>
+
+
+                <div class="form-group">
+                    {{ form.hidden.label }} {{ form.hidden }}
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Select list:</label>
+                    <select class="form-control" id="{{ form.section_id.id }}}" name="{{ form.section_id.name }}">
+
+                        {% for sectioni in sections %} {% if sectioni == section %}
+                        <option selected value="{{sectioni.id}}">{{ sectioni.name }}</option>
+                        {% else %}
+                        <option value="{{sectioni.id}}">{{ sectioni.name }}</option>
+                        {% endif %} {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var myText = document.getElementById("{{form.desc.id}}");
+    var wordCount = document.getElementById("wordCount");
+    myText.addEventListener("keyup", function () {
+        var characters = myText.value.split('');
+        wordCount.innerText = 400 - characters.length;
+    });
+
+</script> {% endblock %}

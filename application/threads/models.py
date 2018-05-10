@@ -13,6 +13,7 @@ class Thread(db.Model):
     desc = db.Column(db.String(400), nullable=False)
     hidden = db.Column(db.Boolean, nullable=False)
     pinned = db.Column(db.Boolean, nullable=False)
+    locked = db.Column(db.Boolean, nullable=False)
     
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
@@ -29,6 +30,7 @@ class Thread(db.Model):
         self.desc = ""
         self.hidden = False
         self.pinned = False
+        self.locked = False
 
     @staticmethod
     def search_threads_by_thread(search):
@@ -36,6 +38,7 @@ class Thread(db.Model):
                     " LEFT JOIN account ON account.id = thread.account_id"
                     " LEFT JOIN section ON section.id = thread.section_id"
                     " WHERE LOWER(thread.name) LIKE LOWER(:search)"
+                    " AND NOT thread.hidden"
                     " ORDER BY thread.date_created DESC").params(search='%'+search+'%')
         res = db.engine.execute(stmt)
         response = []
@@ -49,6 +52,7 @@ class Thread(db.Model):
                     " LEFT JOIN account ON account.id = thread.account_id"
                     " LEFT JOIN section ON section.id = thread.section_id"
                     " WHERE LOWER(account.username) LIKE LOWER(:user)"
+                    " AND NOT thread.hidden"
                     " ORDER BY thread.date_created DESC").params(user='%'+user+'%')
         res = db.engine.execute(stmt)
         response = []

@@ -13,6 +13,14 @@
     #meh {
       background-image: url("{{url_for('static', filename='background.png')}}")
     }
+
+    .display-4 {
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: pixelated;
+    }
   </style>
 
 </head>
@@ -32,7 +40,7 @@
       </div>
       <div class="row align-items-center">
         <div class="col-sm-12">
-          <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2 text-light">
+          <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2 text-light" >
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
               aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -41,7 +49,7 @@
               <ul class="navbar-nav mr-auto">
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('threads_index') }}">My threads</a>
+                  <a class="nav-link" href="{{ url_for('threads_index') }}">My threads </a>
                 </li>
                 {% endif %}
                 <li class="nav-item">
@@ -55,10 +63,6 @@
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('threads_search') }}">
-                <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                  <input type="checkbox" class="custom-control-input" id="tag" name="tag">
-                  <label class="custom-control-label" for="tag">Tag</label>
-                </div>
 
                 <div class="custom-control custom-checkbox my-1 mr-sm-2">
                   <input type="checkbox" class="custom-control-input" id="select" name="select">
@@ -68,8 +72,10 @@
                 <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
-              <div class="form-inline mt-2 mt-md-0">
-                {% if current_user.is_authenticated %} Logged in as {{ current_user.name }}
+              <div class="form-inline mr-sm-2" style="padding-left: 30px; padding-right: 30px">
+                {% if current_user.is_authenticated %}
+                <span style="padding-left: 10px; padding-right: 10px"> Logged in: {{ current_user.name }}</span>
+
                 <a href="{{ url_for('auth_view') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Profile information</a>
                 <span class="caret"></span>
                 <a href="{{ url_for('auth_logout') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Logout .</a>
@@ -87,7 +93,7 @@
 
 
 
-      <main role="main" class="container-fluid">
+      <main role="main" class="container-fluid" style="max-height: 100%; min-height: 100vh; position:relative">
         <div>
           {% block body %}
           <p>

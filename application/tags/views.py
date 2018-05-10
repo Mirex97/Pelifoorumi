@@ -31,9 +31,9 @@ def add_tag():
     form = TagForm(request.form)
     tags = Tag.find_with_tag(form.name.data)
     if tags:
-        return render_template("tags/new.html", form = TagForm())
+        return redirect(request.referrer)
     if not form.validate():
-        return render_template("tags/new.html", form = form)
+        return redirect(request.referrer)
     t = Tag(form.name.data)
     db.session().add(t)
     db.session().commit()
@@ -49,7 +49,7 @@ def tag_remove(tag_id):
     db.session().commit()
     return redirect(url_for("tags_index"))
 
-@app.route("/tags/find/", methods=["POST"])
+@app.route("/tags/find/<tag>", methods=["GET", "POST"])
 def find_threads(tag):
     threads = Tag.find_threads_by_tag(tag);
     return render_template("threads/search.html", threads = threads)

@@ -10,9 +10,17 @@
 
 
 <div id="contain" class="jumbotron">
-    {% if not users %} No active users! Register! {% else %}
+    {% if not users and not current_user.is_authenticated %} No active users! Register! {% else %}
     <h2>Active users in website!</h2>
 
+    {% if current_user.is_authenticated %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title"> {{ current_user.username }} </h2>
+            <p class="card-text">{{ current_user.role }}</p>
+        </div>
+    </div>
+    {% endif %}
 
     {% for user in users %}
     <div class="card">

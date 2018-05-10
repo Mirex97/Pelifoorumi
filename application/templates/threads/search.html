@@ -8,7 +8,7 @@
     </ol>
 </nav>
 
-<div id="contain" class="jumbotron">
+<div id="contain" class="jumbotron" style="text-align: center">
 
 
 
@@ -37,4 +37,13 @@
     </table>
 </div>
 
-{% else %} No Threads found with parameters! {% endif %} {% endblock %}
+{% else %}
+<div class="col-sm">
+    <div class="row justify-content-center">
+        <div style="display:table-cell; vertical-align:middle; text-align:center">
+            <img class="display-4" src="{{url_for('static', filename='confused.gif')}}" width="200">
+        </div>
+    </div>
+</div>
+<h3>No threads found with current search.</h3>
+{% endif %} {% endblock %}

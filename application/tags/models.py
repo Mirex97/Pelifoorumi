@@ -39,6 +39,29 @@ class Tag(db.Model):
         for row in res:
             response.append({"id":row[0], "name":row[1]})
         return response
+
+    @staticmethod
+    def find_tags_with_thread(thread_id):
+        stmt = text("SELECT tag.id, tag.name FROM tag"
+                    " LEFT JOIN tag_thread ON tag.id = tag_thread.tag_id"
+                    " LEFT JOIN thread ON thread.id = tag_thread.thread_id"
+                    " WHERE (thread.id = :threadid)").params(threadid=thread_id)
+        #" + str(section_id) + ")"
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1]})
+        return response
+
+
+    @staticmethod
+    def find_tags():
+        stmt = text("SELECT tag.id, tag.name FROM tag")
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1]})
+        return response
         
 
     

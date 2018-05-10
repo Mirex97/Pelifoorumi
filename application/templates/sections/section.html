@@ -13,9 +13,9 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">
-            <h2>{{ section.name }}</h2>
+            <h2>{{ section.name }} </h2>
         </h5>
-        <form method="POST" action="{{ url_for('threads_create') }}">
+        <form method="POST" autocomplete="off" action="{{ url_for('threads_create') }}">
             <div class="form-group">
                 <label>{{ form.name.label }}</label>
                 {{ form.name }} {{form.section_id}}
@@ -30,16 +30,41 @@
     </div>
 </div>
 
+{% if pinned %}
+<div id="contain" class="jumbotron" style="margin-bottom: 1rem; padding:3%">
+    <h3>
+        <span class="badge badge-danger">Pinned Threads</span>
+    </h3>
+    <table class="table">
+        <tr>
+            <th scope="col">Pinned Thread</th>
+            <th scope="col">Owner</th>
+            <th scope="col"></th>
+        </tr>
+        {% for thread in pinned %}
+        <tr>
+            <td scope="row">{{ thread.name }}</td>
+            <td>{{ thread.owner }}</td>
 
-
-
-
-
-
-
-
-
-<div id="contain" class="jumbotron">
+            <td>
+                <a href="{{ url_for('show_thread', thread_id=thread.id) }}">Open thread!</a>
+            </td>
+            {% if current_user.role == 'Admin' %}
+            <td>
+                <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Delete Thread</button>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %} {% if mythreads.empty %}
+<div id="contain" class="jumbotron" style="margin-bottom: 1rem; padding:3%">
+    <h3>
+        <span class="badge badge-warning">My Threads</span>
+    </h3>
     <table class="table">
         <tr>
             <th scope="col">My Threads</th>
@@ -55,14 +80,20 @@
         {% endfor %}
     </table>
 </div>
-<div id="contain" class="jumbotron">
+
+{% endif %}
+
+<div id="contain" class="jumbotron" style="margin-bottom: 1rem; padding:3%">
+    <h3>
+        <span class="badge badge-primary">All Threads</span>
+    </h3>
     <table class="table">
         <tr>
             <th scope="col">Thread</th>
             <th scope="col">Owner</th>
             <th scope="col"></th>
         </tr>
-        {% for thread in threads %}
+        {% for thread in threads %} {% if not thread in pinned %}
         <tr>
             <td scope="row">{{ thread.name }}</td>
             <td>{{ thread.owner }}</td>
@@ -73,14 +104,23 @@
             {% if current_user.role == 'Admin' %}
             <td>
                 <form method="POST" action="{{ url_for('thread_remove', thread_id=thread.id) }}">
-                    <input type="submit" value="Delete Thread!" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Delete Thread</button>
                 </form>
             </td>
             {% endif %}
         </tr>
-        {% endfor %}
+        {% endif %} {% endfor %}
     </table>
+
+
 </div>
-
-
-{% endblock %}
+{% if not threads %}
+<div class="col-sm">
+    <div class="row justify-content-center">
+        <div style="display:table-cell; vertical-align:middle; text-align:center">
+            <img class="display-4" src="{{url_for('static', filename='confused.gif')}}" width="200">
+        </div>
+    </div>
+</div>
+<h3 style="text-align: center">No Threads!</h3>
+{% endif %} {% endblock %}

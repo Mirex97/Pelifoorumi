@@ -4,20 +4,12 @@
         <li class="breadcrumb-item active" aria-current="page">Index</li>
     </ol>
 </nav>
-<style>
-    .display-4 {
-        image-rendering: -moz-crisp-edges;
-        image-rendering: -o-crisp-edges;
-        image-rendering: -webkit-optimize-contrast;
-        -ms-interpolation-mode: nearest-neighbor;
-        image-rendering: pixelated;
-    }
-</style>
+
 <div class="jumbotron">
 
     <div class="row justify-content-center">
         <div style="display:table-cell; vertical-align:middle; text-align:center">
-            <img class="display-4" src="{{url_for('static', filename='logo.png')}}" width="1000">
+            <img class="display-4" src="{{url_for('static', filename='logo.png')}}" width="1000" style="max-width: 100%; min-width: 1vw">
             <p class="lead">Created By Mikael Kukkamäki
                 <br>Music by Tuukka Oikarinen</p>
         </div>
@@ -87,7 +79,7 @@
         <div class="jumbotron" style="height: 99%">
             <div class="row justify-content-center">
                 <div style="display:table-cell; vertical-align:middle; text-align:center">
-                    <img class="display-4" src="{{url_for('static', filename='K-Juna.gif')}}" width="1000" style="width: auto">
+                    <img class="display-4" src="{{url_for('static', filename='K-Juna.gif')}}" width="1000" style="max-width: 75%; min-width: 1vw">
                     <h2 class="display-4">Download Links</h2>
 
                     <div>
@@ -97,8 +89,8 @@
                             <br>
                             <b>Place the downloaded .jar into its own folder!</b>
                             <p>
-                                Latest
-                                <b>Java</b> is also required to play!
+                                Latest (or Version 8 Update 171)
+                                <b>Java</b> is also required to play!<br>
                                 <a href="https://java.com/en/download/" class="btn btn-warning btn-sm " role="button" aria-pressed="true">Latest Java</a>
                             </p>
                             <p>Currently game is a pre-release = Demo. </p>

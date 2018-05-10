@@ -8,51 +8,130 @@
 			<a href="{{url_for('section_index')}}">Forums</a>
 		</li>
 		<li class="breadcrumb-item">
-			<a href="{{ url_for('show_section', section_id=thread.section_id) }}">Section</a>
+			<a href="{{ url_for('show_section', section_id=thread.section_id) }}">{{ section.name}}</a>
 		</li>
 		<li class="breadcrumb-item active" aria-current="page">{{ thread.name }}</li>
 	</ol>
 </nav>
 
+<div id="contain" class="jumbotron" style="position: relative; margin-bottom: 1rem;">
+	<div style="position:inherit; width: 400; height: 0;">
+		<div style="position:inherit; left: 0px; top: -2rem;">
+			{% if current_user == owner or current_user.role == 'Admin' %}
+			<a href="{{ url_for('thread_modify', thread_id = thread.id) }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Modify</a>
+			{% endif%} {% if current_user.role == 'Admin' %} {% if not thread.locked %}
+			<a href="{{ url_for('thread_lock', thread_id = thread.id) }}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">Lock</a>
+			{% else %}
+			<a href="{{ url_for('thread_lock', thread_id = thread.id) }}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">Unlock</a>
+			{% endif %} {% if not thread.pinned %}
+			<a href="{{ url_for('thread_pin', thread_id = thread.id) }}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Pin</a>
+			{% else %}
+			<a href="{{ url_for('thread_pin', thread_id = thread.id) }}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Unpin</a>
+			{% endif %} {% endif %}
+
+			<p style="width: 100; height: 0; opacity: 0.3;  display:inline">
+				{% if thread.hidden %} Hidden {% endif %} {% if thread.hidden and thread.locked %} and {% endif%} {% if thread.locked %}
+				Locked {% endif %}
+			</p>
+		</div>
+	</div>
+	<div class="row justify-content-center" style="align-items: center; text-align: center">
+		<div id="contain" class="col col-auto">
+			<div class="card" style="width: 30vw; min-width: 50vw; text-align: center;">
+				<div class="card-body">
+
+					<h3 class="card-title">{{ thread.name }}</h3>
+					<h6 class="card-subtitle mb-2 text-muted">by {{ owner.name }}</h6>
+					{% if not thread.desc == '' %}
+					<p class="card-text" style="white-space: pre-wrap;">{{thread.desc}}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div id="contain" class="col-sm">
+		<div id="contain" class="jumbotron" style="position: relative; margin-bottom: 1rem;">
 
 
-<div id="contain" class="jumbotron">
-	<h3>
-		{{ thread.name }} by {{ owner.name }}
-	</h3>
-	<form method="POST" action="{{ url_for('tag_join', thread_id = thread.id)}}">
-		<div class="form-group">
-			<label for="tag_id">Tag</label>
-			<select name="tag_id" id="tag_id" class="form-control">
-				{% for tag in tags %}
-				<option value="{{tag.id}}">{{tag.name}}</option>
-				{% endfor %}
-			</select>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<form method="POST" action="{{ url_for('tag_join', thread_id = thread.id)}}">
+				<div class="form-group">
+					<label for="tag_id">Add a Tag</label>
+					<select name="tag_id" id="tag_id" class="form-control">
+						{% for tag in tags %} {% if not tag in threadtags %}
+						<option value="{{tag.id}}">{{tag.name}}</option>
+						{% endif %} {% endfor %}
+					</select>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
 		</div>
-	</form>
-	<form method="POST" action="{{ url_for('comments_create') }}">
-		<div class="form-group">
-			<label>{{ form.message.label }}</label>
-			{{ form.message }} {{form.thread_id}}
-			<button type="submit" class="btn btn-primary">Add comment</button>
+	</div>
+	<div id="contain" class="col-sm">
+		<div id="contain" class="jumbotron" style="position: relative; margin-bottom: 1rem;">
+			<div class="card">
+				<div class="card-body">
+					<h3 class="card-title">Tags</h3>
+					<p class="card-text">
+						{% for tagthread in threadtags %}
+						<a href="{{ url_for('tag_unjoin', thread_id = thread.id, tag_id = tagthread.id)}}" class="btn btn-warning btn-sm" role="button"
+						 aria-pressed="true">
+							{{tagthread.name}}
+						</a>
+						{% endfor %}
+					</p>
+				</div>
+			</div>
 		</div>
-		{% for error in form.message.errors %}
-		<div>
-			<li>{{ error }}</li>
-		</div>
-		{% endfor %}
-	</form>
+	</div>
+
+</div>
+
+<div id="contain" class="jumbotron" style="position: relative; margin-bottom: 1rem;">
+	<div>
+		<form method="POST" action="{{ url_for('comments_create') }}">
+			<div class="form-group">
+				<label>{{ form.message.label }} (400 characters max)</label>
+
+				<textarea class="form-control" name="{{ form.message.name }}" id="{{form.message.id}}" rows="3" data-="{{ form.message.data }}"></textarea> {{form.thread_id}}
+				<p>
+					<span id="wordCount">400</span> characters
+				</p>
+				<button type="submit" class="btn btn-primary">Add comment</button>
+
+			</div>
+			{% for error in form.message.errors %}
+			<div>
+				<li>{{ error }}</li>
+			</div>
+			{% endfor %}
+		</form>
+	</div>
+
 	{% if comments %} {% for comment in comments %}
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">{{ comment.username }}</h5>
 			<h6 class="card-subtitle mb-2 text-muted">{{ comment.date }}</h6>
-			<p class="card-text">{{comment.message}}</p>
+			<p class="card-text" style="white-space: pre-wrap;">{{comment.message}}</p>
+			{% if current_user.is_authenticated and (current_user.role == 'Admin') or (comment.username == current_user.username) %}
 			<form method="POST" action="{{ url_for('comments_remove', comment_id=comment.id) }}">
 				<input type="submit" value="Remove Comment" />
 			</form>
+			{% endif %}
 		</div>
 	</div>
+	{% endfor %}{% else %} No comments! {% endif %}
+</div>
 
-	{% endfor %} {% else %} No comments! {% endif %} </div>{% endblock %}
+<script>
+	var myText = document.getElementById("{{form.message.id}}");
+	var wordCount = document.getElementById("wordCount");
+	myText.addEventListener("keyup", function () {
+		var characters = myText.value.split('');
+		wordCount.innerText = 400 - characters.length;
+	});
+
+</script> {% endblock %}

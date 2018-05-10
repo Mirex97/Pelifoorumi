@@ -34,6 +34,7 @@ class Section(db.Model):
         stmt = text("SELECT  thread.id, thread.name, account.username FROM thread"
                     " LEFT JOIN account ON thread.account_id = account.id"
                     " WHERE (thread.section_id = :sectionid)"
+                    " AND NOT thread.hidden"
                     " ORDER BY thread.date_created"
                     " DESC").params(sectionid=section_id)
         
@@ -42,3 +43,35 @@ class Section(db.Model):
         for row in res:
             response.append({"id":row[0], "name":row[1], "owner":row[2]})
         return response
+
+    @staticmethod
+    def nohide_find_threads_with_section(section_id):
+        stmt = text("SELECT  thread.id, thread.name, account.username FROM thread"
+                    " LEFT JOIN account ON thread.account_id = account.id"
+                    " WHERE (thread.section_id = :sectionid)"
+                    " ORDER BY thread.date_created"
+                    " DESC").params(sectionid=section_id)
+        
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "owner":row[2]})
+        return response
+
+    @staticmethod
+    def find_pinned_by_section(section_id):
+        stmt = text("SELECT  thread.id, thread.name, account.username FROM thread"
+                    " LEFT JOIN account ON thread.account_id = account.id"
+                    " WHERE (thread.section_id = :sectionid)"
+                    " AND thread.pinned"
+                    " ORDER BY thread.date_created"
+                    " DESC").params(sectionid=section_id)
+        
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "owner":row[2]})
+        return response
+
+
+

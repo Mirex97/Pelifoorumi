@@ -16,3 +16,14 @@ class Tag_Thread(db.Model):
         for row in res:
             return True
         return False
+
+    @staticmethod
+    def get_for_ids(tag_id, thread_id):
+        stmt = text("SELECT tag_thread.id FROM tag_thread"
+                    " WHERE (tag_id = :tagid)"
+                    " AND (thread_id = :threadid)").params(tagid = tag_id, threadid = thread_id)
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            return row[0]
+        return response

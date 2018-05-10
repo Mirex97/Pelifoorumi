@@ -1,15 +1,23 @@
 {% extends "layout.html" %} {% block body %} {{ error }}
 
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{url_for('index')}}">Index</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Register</li>
+    </ol>
+</nav>
 
 
 <div class="row justify-content-center">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Register</h5>
-            <form method="POST" action="{{ url_for('auth_register') }}">
+            <form method="POST" autocomplete="off" action="{{ url_for('auth_register') }}">
                 <div class="form-group">
                     {{ form.name.label }}
+                    <br>
                     {{ form.name }}
                 </div>
                 <div class="form-group">

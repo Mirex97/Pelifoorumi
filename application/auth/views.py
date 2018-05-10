@@ -7,8 +7,13 @@ from application.auth.forms import LoginForm, ModifyForm, RegisterForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    
     if request.method == "GET":
-        return render_template("auth/loginform.html", form = LoginForm())
+        form = LoginForm()
+        form.referrer.data = request.referrer
+        return render_template("auth/loginform.html", form = form)
 
     
     form = LoginForm(request.form)
@@ -16,13 +21,12 @@ def auth_login():
     
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
-        print("DIDNT FIND USER")
         return render_template("auth/loginform.html", form = form,
                                error = "No such username or password")
         
     print("Käyttäjä " + user.name + " tunnistettiin")
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(form.referrer.data)
 
 @app.route("/auth/logout")
 def auth_logout():
@@ -31,13 +35,19 @@ def auth_logout():
 
 @app.route("/auth/register")
 def auth_form():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
     return render_template("auth/register.html", form = RegisterForm())
 
 @app.route("/auth/register", methods = ["POST"])
 def auth_register():
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+
+    
     form = RegisterForm(request.form)
-
-
+    form.name.data = form.name.data.replace(" ", "")
+    form.username.data = form.username.data.replace(" ", "")
     user = User.query.filter_by(username=form.username.data).first()
     if user:
         form.username.data = ""
@@ -83,6 +93,8 @@ def auth_modify():
 @login_required
 def auth_confirm():
     form = ModifyForm(request.form)
+    form.name.data = form.name.data.replace(" ", "")
+    form.username.data = form.username.data.replace(" ", "")
     if current_user.password != form.oldpassword.data:
         return render_template("auth/modify.html", form = form,
                                error = "Password did not match.")

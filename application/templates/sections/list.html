@@ -8,43 +8,54 @@
   </ol>
 </nav>
 
-<div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
+<div id="contain" class="jumbotron" style="max-height: 100%; min-height: 100vmin">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
           <h2 class="card-title"> Forums </h2>
           <p class="card-text">Choose a Section to view threads.</p>
-        {% if current_user.role == 'Admin' %}
-        <form method="GET" action="{{ url_for('section_form') }}">
-          <button class="btn btn-outline-success my-2 sm-0" type="submit">New Section</button>
-        </form>
-        {% endif %}
-        
+          {% if current_user.role == 'Admin' %}
+          <form method="GET" action="{{ url_for('section_form') }}">
+            <button class="btn btn-outline-success my-2 sm-0" type="submit">New Section</button>
+          </form>
+          {% endif %}
+
+        </div>
+
       </div>
-
     </div>
-  </div>
-  <div class="col-sm-9">
-    {% for section in sections %}
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="{{ url_for('show_section', section_id=section.id) }}">{{ section.name }}</a>
-            </h5>
+    <div class="col-sm-9">
+      {% for section in sections %}
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{{ url_for('show_section', section_id=section.id) }}">{{ section.name }}</a>
+              </h5>
 
-            {% if current_user.role == 'Admin' %}
-            <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
-              <input type="submit" value="Delete Section!" />
-            </form>
-            {% endif %}
+              {% if current_user.role == 'Admin' %}
+
+              <form method="POST" autocomplete="off" action="{{ url_for('section_edit', section_id = section.id) }}">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="{{ form.name.id }}" name="{{ form.name.name }}" placeholder="Required" value="{{ section.name }}" required>
+                  <input type="number" class="form-control" id="{{ form.priority.id }}" name="{{ form.priority.name }}" placeholder="Required" value="{{ section.priority }}" required>
+                  {{ form.section_id}}
+                  <input type="submit" value="Update!" />
+
+                </div>
+              </form>
+              <form method="POST" action="{{ url_for('section_remove', section_id=section.id) }}">
+                <input type="submit" value="Delete Section!" />
+              </form>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-
 </div>
 {% endblock %}

@@ -7,34 +7,42 @@
         <li class="breadcrumb-item active" aria-current="page">Tags</li>
     </ol>
 </nav>
-<div class="row">
-    <div class="col-2">
-        <h1> Tags </h1>
-        {% if current_user.role == 'Admin' %}
-        <form method="POST" action="{{ url_for('add_tag') }}">
-            {{form.name.label}}{{ form.name }}
-            <input type="submit" value="Create New Tag!" />
-        </form>
-        {% endif %}
-    </div>
-</div>
-{% for tag in tags %}
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">
-                    {{ tag.name }}
-                </h5>
 
-                {% if current_user.role == 'Admin' %}
-                <form method="POST" action="{{ url_for('tag_remove', tag_id=tag.id) }}">
-                    <input type="submit" value="Delete Tag!" />
-                </form>
-                {% endif %}
+<div id="contain" class="jumbotron" style="max-height: 100%; min-height: 100vmin">
+    <div class="row">
+        <div class="col-2">
+            <h1> Tags </h1>
+            {% if current_user.role == 'Admin' %}
+            <form method="POST" autocomplete="off" action="{{ url_for('add_tag') }}">
+
+                {{form.name.label}}{{ form.name }}
+                <input type="submit" value="Create New Tag!" />
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    {% for tag in tags %}
+    <a href="{{url_for('find_threads', tag = tag.name)}}">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ tag.name }}
+                        </h5>
+
+                        {% if current_user.role == 'Admin' %}
+                        <form method="POST" action="{{ url_for('tag_remove', tag_id=tag.id) }}">
+                            <input type="submit" value="Delete Tag!" />
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+
             </div>
         </div>
+    </a>
+    {% endfor %}
 
-    </div>
 </div>
-{% endfor %} {% endblock %}
+{% endblock %}
