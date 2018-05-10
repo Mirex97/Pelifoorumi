@@ -20,7 +20,7 @@ Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle pals
 ### Käyttöohje
 Linkki foorumille --> Foorumi[https://mirex-pelifoorumi.herokuapp.com/]
 
-#### Navbar
+##### Navbar
 - Tämä on oleellisin osa sivua ja käyttäjän paras ystävä.
 - Vasemmasta osasta löytyy nopeat linkit eri osiin ((My Threads), Forum, Users, Tags).
 - Löytyy myös Threadien etsintä osio johon avainsanan avulla voi etsiä palstoja.
@@ -32,21 +32,21 @@ Linkki foorumille --> Foorumi[https://mirex-pelifoorumi.herokuapp.com/]
 - Lisäksi otetaan tähän **Breadcrumb** toiminto (Navbarin alapuolella oleva osa), jonka avulla voi peruuttaa vanhempaan sivuun.
   - Tämä päivittyy eri sivuilla.
 
-#### Index
+##### Index
 - Tältä sivulta löytyy latauslinkki peliin pohjalta. Tämä on siis esittely sivu peliä varten.
   - Myös linkki viimeisimpään javaan ja OTM repositorioon githubbiin.
 - Muuten alkusivu on yksinkertainen.
 
-#### Forums (Navbar)
+##### Forums (Navbar)
 - Täältä pääsee osioiden (Section) listaukseen. Klikkaamalla nimeä pääsee seuraavalle sivulle.
 
-#### Section
+##### Section
 - Tältä sivulta löytyy osion palstat. Nämä on joko listattu "Pinned", "My Threads" ja "All Threads".
   - Listaus riippuu onko käyttäjä minkälainen (Admin, default, anonymous).
 - Listauksen oikealla olevasta "Open thread!" linkistä pääsee palstan sisälle.
   - Tällä sivulla voi myös luoda nopeasti palstan osion sisään, joka luodaan vain nimen avulla.
 
-#### Thread
+##### Thread
 - Täältä löytyy sitten informaatio.
 - Tagejä voidaan lisätä sivulla olevasta listasta, ja ne päivittyvät tämän vieressä olevaan luotteloon.
   - Luettelon tagejä klikkaamalla tämä poistuu palstasta.
@@ -58,17 +58,17 @@ Linkki foorumille --> Foorumi[https://mirex-pelifoorumi.herokuapp.com/]
 - Alta löytyy kommenteille osio ja kenttä niiden lisäämistä varten.
   - Pitää olla kirjautuneena.
   
-#### Tags
+##### Tags
 - Täältä löytyy lista tageistä.
   - Tagien lisäys Adminin vastuulla. Vain tärkeimmät tagit siis käytössä.
 - Tagiä klikkaamalla voi listata kaikki tagiin kuuluvat palstat.
   - Kuten search! (Aluksi sille oli oma metodi, mutta tämä oli hankala, kiitokset issuen antajalle).
-#### Users
+##### Users
 - Kaikki sivun käyttäjät listassa. (Nimi ja rooli).
   - Admin pystyy täältä hallinnoida käyttäjiä.
     - Tähän voisi toteuttaa jos käyttäjien määrä kasvaa, niin oma etsintä. (Jatkokehitys idea).
 
-#### Muita sivuja.
+##### Muita sivuja.
 Modify sivut ovat melko itsestään selittäviä.
 "Profile informationista", voi muokata käyttäjän nimeä tai poistaa käyttäjän. (Poistaa samalla kaikki käyttäjän threadit).
 
