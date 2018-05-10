@@ -3,80 +3,87 @@ Tämä dokumentti sisältää kaikki alueet käytynä läpi ja myös ohjeet asen
 User storyt ovat kuitenkin toisessa tiedostossa documentation juuressa. (Linkki löytyy myös gitin juuresta!).
 
 ### Kuvaus
-Pelifoorumi, johon voi luoda palstoja ja jättää kommentteja!
+Pelifoorumi, johon voi luoda palstoja ja jättää kommentteja palstojen alle!
 Tietokannan luokkia ovat (Thread, Account, Comment, Tag, Section)!
 Thread käsittelee palstan tiedot ja samalla myös näyttää palstaan liittyvät kommentit.
 
 Account sisältää kaikki käyttäjät ja heidän tietonsa. Ja on yhteydessä palstaan ja kommenttiin (omistaja).
-Käyttäjällä myös rooli (aluksi "default"), joka antaa eri toiminnallisuuksia sivulla. (Tällä hetkellä suunnitteilla vain ylläpito ja peruskäyttäjät, ei ehkä tarvitse edes lisää).
+Käyttäjällä myös rooli (aluksi "default"), joka antaa eri toiminnallisuuksia sivulla. (Tällä hetkellä suunnitteilla vain ylläpito ja peruskäyttäjät, ei ehkä tarvitse edes enempää).
 
 Comment sisältää käyttäjän asettaman viestin ja on yhteydessä käyttäjään (omistaja) sekä palstaan (sinne minne kirjoitettu).
 
 Tag:in avulla voidaan etsiä samaan aihepiiriin liittyviä palstoja. Ja näin myös järjestellä niitä!
-(Tagin asettaminen ei pakollinen).
+(Tagien asetus tuo + ja helpompi löytää samaan aihepiiriin kuuluvia palstoja).
 
-Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle palstalle ja sen avulla palstat voidaan luokitella eri osioihin. 
+Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle palstalle ja sen avulla palstat voidaan luokitella eri osioihin. Joten Section on Threadien vanhempi.
 
 ### Käyttöohje
 Linkki foorumille --> Foorumi[https://mirex-pelifoorumi.herokuapp.com/]
 
-# HUOM!!!
-JOS Heroku valittaa internal server errorista, niin odota hetki ja palaa sivulle tai spämmää F5:sta. Heroku jostain syystä ei reagoi hetken aikaan, mutta melkein välittömästi pyynnön jälkeen se pitäisi herätä! Tämä tapahtui itselleni usein kun yritin registeröityä sivulle. Mutta hetken päästä se toimii hyvin.
+#### Navbar
+- Tämä on oleellisin osa sivua ja käyttäjän paras ystävä.
+- Vasemmasta osasta löytyy nopeat linkit eri osiin ((My Threads), Forum, Users, Tags).
+- Löytyy myös Threadien etsintä osio johon avainsanan avulla voi etsiä palstoja.
+  - Palstan löytyminen määräytyy palstan nimen mukaan.
+  - Kuitenkin voi valita vieressä olven 'checkbox' avulla, että etsitään palstoja käyttäjän nimellä.
+    - Kenttään tarvitsee vain laittaa osan etsittävän nimestä.
+- Oikealla löytyy (Login ja Register) tai (Profile info, Logout).
+- Navbarin yläpuolella olevaa logoa klikkaamalla pääsee takaisin 'Index' sivulle.
+- Lisäksi otetaan tähän **Breadcrumb** toiminto (Navbarin alapuolella oleva osa), jonka avulla voi peruuttaa vanhempaan sivuun.
+  - Tämä päivittyy eri sivuilla.
 
-#### Käyttöohjeet jatkuvat
+#### Index
+- Tältä sivulta löytyy latauslinkki peliin pohjalta. Tämä on siis esittely sivu peliä varten.
+  - Myös linkki viimeisimpään javaan ja OTM repositorioon githubbiin.
+- Muuten alkusivu on yksinkertainen.
 
+#### Forums (Navbar)
+- Täältä pääsee osioiden (Section) listaukseen. Klikkaamalla nimeä pääsee seuraavalle sivulle.
 
-LISÄOHJEET 20.4.2018:
-Navigointi osiossa löytyy Search toiminto ja sitä ennen kaksi checkboxia. Nämä toimivat mutta ei vielä kuten haluisin! Vasemman puoleinen boxi valitsee tagin ja oikea käyttäjän. Jos kummatkin poissa niin search etsii palstojen nimillä! Ja teksti on erittäin tumma näiden vieressä joka pitää saada korjattua.
+#### Section
+- Tältä sivulta löytyy osion palstat. Nämä on joko listattu "Pinned", "My Threads" ja "All Threads".
+  - Listaus riippuu onko käyttäjä minkälainen (Admin, default, anonymous).
+- Listauksen oikealla olevasta "Open thread!" linkistä pääsee palstan sisälle.
+  - Tällä sivulla voi myös luoda nopeasti palstan osion sisään, joka luodaan vain nimen avulla.
 
-1. Ensiksi tulee näkymä indeksistä, ja yläpalkista voi löytää "Login", "Register", "List threads" ja "Create a new Thread".
-- Login --> kirjaudu olemassa olevaan käyttäjään.
-- Register --> Luo käyttäjä
-- List threads --> Palstojen listaus
-- Create a bew Thread --> Palstan luonti
-2. Edetään Registeriin. Täältä löytyy heti lomake uuden käyttäjän luontiin!
-- Name --> Nimesi
-- Username --> Käyttäjänimesi
-- Password --> Salasana
-- Retype Password --> Salasanan varmistus.
-  - Jos käyttäjänimi, salasanat ovat väärin tai jokin kenttä on tyhjä niin lomake ei etene ja sivu alkaa valittamaan.
-3. Klikkaa registeriä ja käyttäjään pitäisi kirjautua sisään! Nyt yläpalkkiin pitäisi tulla "Profile information" ja "Logout".
-- Logout kirjaa ulos! (Melko selvänpäiväistä).
-- Profile information näyttää käyttäjän tiedot! Ja mahdollistaa myös muokkaukseen.
-  - Palataan näihin kohta!
-4. Tarkkaillaan "Create a new Thread" sivua. Ilmestyy lomake josta voi suoraan luoda uuden palstan pelkällä nimellä.
-  - Tähän tulee vielä lisää vaihtoehtoja, kuten mihin osioon lisätään ja tagit JA myös kuvaus!
-- Create new Thread! Luo uuden palstan ja vie listaukseen.
-5. List threads sivulla on nyt uusi palstasi ja tämä löytyy kahdesta kohdasta. Omat palstat ja kaikki palstat (tarvitsee hidden kentän).
-- Palstan vierestä löytyy "Open Thread!", joka avaa kyseisen palstan.
-6. Palstan avauduttua voi listata kommentit ja myös lisätä alla olevalla lomakkeella.
-7. Palataan Profile informationin pariin.
-- Sivulta löytyy Modify nappi ja sen alta listana käyttäjän tiedot.
-8. Modify nappi avaa uuden lomakkeen jonka avulla voi muokata käyttäjän tietoja!
-- Sivulta löytyy myös "DELETE ACCOUNT", joka poistaa oman käyttäjäsi! Klikataan sitä kohta.
-- Taas melko selkestä kentät: "Name", "Username", "Old Password", "New Password".  Samat validoinnit pätee kuten rekisteröinnissä.
-9. Update napilla voi päivittää tiedot ja tämä vie takaisin profiilin listaukseen!
-10. Mennään vielä Modify napilla modify sivulle ja klikataan DELETE ACCOUNT
-11. Onnittelut pääsit tutoriaalista läpi!
-- Ohjeisiin tulee vielä lisättävää kun saan kaikki toiminnot kasaan.
+#### Thread
+- Täältä löytyy sitten informaatio.
+- Tagejä voidaan lisätä sivulla olevasta listasta, ja ne päivittyvät tämän vieressä olevaan luotteloon.
+  - Luettelon tagejä klikkaamalla tämä poistuu palstasta.
+- Riippuen käyttäjän roolista hänelle voi näkyä vasemmassa kulmassa olevia vaihtoehtoja.
+  - (Modify, Lock, Pin). Modify avulla voidaan muokata palstaa (Piilottaa, siirtää tai antaa kuvaus).
+    - Jos palstan on Admin lukinnut, niin omistaja ei voi siirtää palstaa muualle tai muuttaa sen Hidden tilaa.
+- Jos palstan tila on Hidden, sitä ei voi etsiä tai listata.
+  - Admin kuitenkin näkee 'Hidden' palstat.
+- Alta löytyy kommenteille osio ja kenttä niiden lisäämistä varten.
+  - Pitää olla kirjautuneena.
+  
+#### Tags
+- Täältä löytyy lista tageistä.
+  - Tagien lisäys Adminin vastuulla. Vain tärkeimmät tagit siis käytössä.
+- Tagiä klikkaamalla voi listata kaikki tagiin kuuluvat palstat.
+  - Kuten search! (Aluksi sille oli oma metodi, mutta tämä oli hankala, kiitokset issuen antajalle).
+#### Users
+- Kaikki sivun käyttäjät listassa. (Nimi ja rooli).
+  - Admin pystyy täältä hallinnoida käyttäjiä.
+    - Tähän voisi toteuttaa jos käyttäjien määrä kasvaa, niin oma etsintä. (Jatkokehitys idea).
+
+#### Muita sivuja.
+Modify sivut ovat melko itsestään selittäviä.
+"Profile informationista", voi muokata käyttäjän nimeä tai poistaa käyttäjän. (Poistaa samalla kaikki käyttäjän threadit).
 
 ### Asennusohje
 Paikallista toteutusta varten Kloonaa tai lataa repositorio koneellesi (ja pura se).
-Tämän jälkeen suorita 'run.py' pythonilla ja sivun pitäisi aueta koneellesi osoitteseen 127.0.0.1:5000.
-Tai checkkaa foorumia herokussa!
-- Tarvitsen vielä tarkennusta oliko asennusohje näin lyhyt...?
+Tämän jälkeen suorita 'python run.py' komentorivillä kansion sisällä ja sivun pitäisi aueta koneellesi osoitteseen 127.0.0.1:5000.
+Tai checkkaa foorumia herokussa (Suosittelen tätä löytyy enemmän materiaalia)!
 
 ### Rajoitteet
-... TODO
+Alussa 'Admin' rooli täytyy antaa jollekkin käyttäjälle manuaalisesti. Joten ei Admin käyttäjää ei ole kovakoodattuna missään.
+Lisäksi BCryptiä en saanut toimimaan Herokussa. Vaikka enkoodaa oikein lokaalisti niin kaikki menee pieleen kun sen laittaa nettiin.
+Salasanat ovat siis selkokielisinä (Siksi älä käytä samoja salasanoja tällä sivulla).
 
 ### Puuttuu tällä hetkellä:
-- Linkki peliin
-- Ulkonäkö
-- Thread luokan kuvaus (description) toiminnallisuus! (Helppo).
-- Viestien muokkaus
-- Tykkäämis toiminto (Ei pakollinen!)
-
-
+- Tykkäämis toiminto (Ei pakollinen! Kommentit ovat jo tarpeeksi riittäviä!)
 
 ### Kokemukset taulukossa (päivämäärä  kokemus)
 |Päiväys|Kokemus|
@@ -86,3 +93,4 @@ Ennen pääsiäistä | Hieman rauhallisempaan otteeseen vain tutustunut pythonin
 4.4.2018 | Koko päivän tapellut pythonin kanssa!!! Aloitin klo 8:30 ja nyt klo 22 kaikki vasta pelittää :D. Ei meinannut näkyä loppua virheille, mutta nyt! Kaikki ok! Herokussa tietokannat ja käyttäjään voi kirjautua ja rekisteröityä ja luoda palstan ja lisätä kommentteja. Käyttäjistä tehty täysi CRUD. Myös omat validoinnit ettei löydy duplikaatti käyttäjiä. Nimi ja salasana voi kuitenkin olla sama paitsi käyttäjätunnus! LISÄKSI hieman Tag ja Section taulu aloitettu mutta ei vielä valmis! Sen lisään seuraavalle kerralle.
 6.4.2018 | Materiaalin ohjeistus korjattu mutta silti pitää listata jokin taulukko ja tätä en tehnyt aikaisemmin. Nyt kuitenkin käyttäjien listaus pitäisi toimia ja tämä listaa aktiiviset käyttäjät keitä foorumilta löytyy.
 20.4.2018 | Tuli hieman kiire, koska aloin pohtimaan onko Tag taulu edes hyödyllinen... Mutta! Sitten hoksasin, että se voisi olla itseasiassa erittäin hyvä foorumille. Ja nyt hieman kiireessä tein tag taulun foorumille. Lisäksi foorumilla ei ollut monesta moneen suhdetta niin sen takia se on myös hyvä!
+10.5.2018 | Koko päivä hiottu projektia valmiiseen muotoon. Ja näyttää hyvältä vaikka itse sanon :D!
