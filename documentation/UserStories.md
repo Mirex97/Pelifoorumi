@@ -1,4 +1,4 @@
-#### Huom. Sivulla on paljon SQL kyselyitä, koska rooleille on eri tyyppiset kyselynsä. Heitän vain oleellisimpia kyselyitä väliin, mutta nämä eivät kattaa kaikkea!
+#### Huom. Sivulla on paljon SQL kyselyitä, koska rooleille on eri tyyppiset kyselynsä. Heitän siis vain muutamia kyselyitä Stoorien ohelle.
 
 ### Käyttäjänä voin:
 - [x] Luoda käyttäjän foorumiin.
@@ -8,6 +8,13 @@
 - [x] Avata julkisia keskustelupalstoja (Threads).
 - [x] Kommentoida palstoja (Tykkääminen vaihtoehtoinen).
 - [x] Etsiä keskustelupalstoja tägien avulla.
+  - SELECT DISTINCT thread.id, thread.name, account.username, section.name, thread.date_created FROM thread"
+                    " LEFT JOIN account ON account.id = thread.account_id"
+                    " LEFT JOIN section ON section.id = thread.section_id"
+                    " LEFT JOIN tag_thread ON thread.id = tag_thread.thread_id"
+                    " LEFT JOIN tag ON tag.id = tag_thread.tag_id"
+                    " WHERE LOWER(tag.name) LIKE LOWER(:tagi)"
+                    " ORDER BY thread.date_created DESC
 - [x] Luoda keskustelupalstan (Kuvaus "modify" osiossa palstalla)
 - [x] Muokata palstaa omistajana.
 - [x] Lisätä tekstiä ja kommentteja ja myös poistaa niitä.
