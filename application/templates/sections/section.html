@@ -60,7 +60,7 @@
         {% endfor %}
     </table>
 </div>
-{% endif %} {% if not mythreads.empty %}
+{% endif %} {% if current_user.is_authenticated %} {% if mythreads %}
 <div id="contain" class="jumbotron" style="margin-bottom: 1rem; padding:3%">
     <h3>
         <span class="badge badge-warning">My Threads</span>
@@ -80,8 +80,7 @@
         {% endfor %}
     </table>
 </div>
-
-{% endif %}
+{% endif %} {% endif %}
 
 <div id="contain" class="jumbotron" style="margin-bottom: 1rem; padding:3%">
     <h3>
