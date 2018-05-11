@@ -2,7 +2,7 @@ Nimi | Linkki
 -|-
 Heroku | [Mirex-Pelifoorumi](https://mirex-pelifoorumi.herokuapp.com/)!
 User storyt | [Stories](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/UserStories.md)
-Kaavio | [Kaavio (Hieman sotkeentui taulujen relaatiot... Blame the Mouse!)](https://raw.githubusercontent.com/Mirex97/Pelifoorumi/master/documentation/Tietokanta%20(uusi).png)
+Kaavio | [Kaavio](https://raw.githubusercontent.com/Mirex97/Pelifoorumi/master/documentation/Tietokanta%20(uusi).png)
 Dokumentaatio | [Dokumentaatio](https://github.com/Mirex97/Pelifoorumi/blob/master/documentation/Dokumentaatio.md)
 
 ### Viimeisin Major päivitys
