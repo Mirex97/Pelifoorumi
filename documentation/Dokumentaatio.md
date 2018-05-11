@@ -18,6 +18,8 @@ Tag:in avulla voidaan etsiä samaan aihepiiriin liittyviä palstoja. Ja näin my
 Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle palstalle ja sen avulla palstat voidaan luokitella eri osioihin. Joten Section on Threadien vanhempi.
 
 ### Syvempi kuvaus tietokohteista.
+Herokussa käytetään PostgreSQL:llää kuten ohjeistettu, mutta SQliteä lokaalisti.
+
 Melkein kaikista tauluista Full CRUD! Paitsi kommentit, tästä puuttuu muokkaus toiminnallisuus.
 
 Tauluja yhteensä: 5!
