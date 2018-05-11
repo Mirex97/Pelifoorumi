@@ -30,6 +30,81 @@ Comments: Voi luoda, lukea ja poistaa.
 Monimutkaisia kyselyitä paljon! Nämä on valittu eri tilanteisiin ja soveltuvat sivun toimintaan.
 Kyselyt vaihtelevat ehtolauseilla ja staattisia kyselyitä on useita, jotka on kutsuttu sitten niille tarpeellisissa kohdissa.
 
+## Create Table lauseet (Unohdin lisätä mutta tässä ne ovat klo 1:20)
+```
+CREATE TABLE tag (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modifed DATETIME,
+        name VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id)
+)
+
+
+CREATE TABLE account (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modified DATETIME,
+        name VARCHAR(144) NOT NULL,
+        username VARCHAR(144) NOT NULL,
+        password VARCHAR(500),
+        role VARCHAR(144) NOT NULL,
+        PRIMARY KEY (id)
+)
+
+
+CREATE TABLE section (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modified DATETIME,
+        name VARCHAR(144) NOT NULL,
+        priority INTEGER NOT NULL,
+        PRIMARY KEY (id)
+)
+
+
+CREATE TABLE thread (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modified DATETIME,
+        name VARCHAR(144) NOT NULL,
+        "desc" VARCHAR(400) NOT NULL,
+        hidden BOOLEAN NOT NULL,
+        pinned BOOLEAN NOT NULL,
+        locked BOOLEAN NOT NULL,
+        account_id INTEGER NOT NULL,
+        section_id INTEGER NOT NULL,
+        PRIMARY KEY (id),
+        CHECK (hidden IN (0, 1)),
+        CHECK (pinned IN (0, 1)),
+        CHECK (locked IN (0, 1)),
+        FOREIGN KEY(account_id) REFERENCES account (id),
+        FOREIGN KEY(section_id) REFERENCES section (id)
+)
+
+
+CREATE TABLE comment (
+        id INTEGER NOT NULL,
+        date_created DATETIME,
+        date_modified DATETIME,
+        message VARCHAR(400) NOT NULL,
+        thread_id INTEGER NOT NULL,
+        account_id INTEGER NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(thread_id) REFERENCES thread (id),
+        FOREIGN KEY(account_id) REFERENCES account (id)
+)
+
+
+CREATE TABLE tag_thread (
+        id INTEGER NOT NULL,
+        tag_id INTEGER NOT NULL,
+        thread_id INTEGER NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY(tag_id) REFERENCES tag (id),
+        FOREIGN KEY(thread_id) REFERENCES thread (id)
+
+```
 
 ### Käyttöohje
 Linkki foorumille --> [Foorumi](https://mirex-pelifoorumi.herokuapp.com/)
