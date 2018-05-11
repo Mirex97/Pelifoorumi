@@ -1,10 +1,10 @@
 # Pelifoorumi Dokumentaatio 
-Tämä dokumentti sisältää kaikki alueet käytynä läpi ja myös ohjeet asennukselle
-User storyt ovat kuitenkin toisessa tiedostossa documentation juuressa. (Linkki löytyy myös gitin juuresta!).
+Tämä dokumentti sisältää kaikki alueet käytynä läpi ja myös pika-ohjeet asennukselle
+User storyt ovat kuitenkin toisessa tiedostossa documentation kansiosta. (Linkki löytyy myös gitin juuresta!).
 
 ### Kuvaus
 Pelifoorumi, johon voi luoda palstoja ja jättää kommentteja palstojen alle!
-Tietokannan luokkia ovat (Thread, Account, Comment, Tag, Section)!
+Tietokannan tauluja ovat (Thread, Account, Comment, Tag, Section)!
 Thread käsittelee palstan tiedot ja samalla myös näyttää palstaan liittyvät kommentit.
 
 Account sisältää kaikki käyttäjät ja heidän tietonsa. Ja on yhteydessä palstaan ja kommenttiin (omistaja).
@@ -72,7 +72,7 @@ Linkki foorumille --> [Foorumi](https://mirex-pelifoorumi.herokuapp.com/)
 Modify sivut ovat melko itsestään selittäviä.
 "Profile informationista", voi muokata käyttäjän nimeä tai poistaa käyttäjän. (Poistaa samalla kaikki käyttäjän threadit).
 
-### Asennusohje
+## Asennusohje
 Paikallista toteutusta varten Kloonaa tai lataa repositorio koneellesi (ja pura se).
 Tämän jälkeen suorita 'python run.py' komentorivillä kansion sisällä ja sivun pitäisi aueta koneellesi osoitteseen 127.0.0.1:5000.
 Tai checkkaa foorumia herokussa (Suosittelen tätä löytyy enemmän materiaalia)!
@@ -84,6 +84,8 @@ Salasanat ovat siis selkokielisinä (Siksi älä käytä samoja salasanoja täll
 
 ### Puuttuu tällä hetkellä:
 - Tykkäämis toiminto (Ei pakollinen! Kommentit ovat jo tarpeeksi riittäviä!)
+- Joistain syötteiden kohdista puuttuu ilmoitus mikä syötteessä on pielessä. (Tätä olen oikonut asettamalla ohjeeksi jo ennen mikää esim pituus pitää olla).
+  - Koska sovellus käyttää paljon redirect kutsuja ja sivuista löytyy kenttiä, joita ei ole suoraan otettu wtformista, niin en ole ymmärtänyt kuinka tähän lisätään virheen näyttäminen... (Tyhjiä kenttiä sivun syötteet eivät koskaan hyväksy (poislukien kuvaus)).
 
 ### Kokemukset taulukossa (päivämäärä  kokemus)
 |Päiväys|Kokemus|
