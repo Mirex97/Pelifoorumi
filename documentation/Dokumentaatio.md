@@ -17,6 +17,20 @@ Tag:in avulla voidaan etsiä samaan aihepiiriin liittyviä palstoja. Ja näin my
 
 Section menee vielä syvemmälle kuin Tag luokka. Se on vaadittu jokaiselle palstalle ja sen avulla palstat voidaan luokitella eri osioihin. Joten Section on Threadien vanhempi.
 
+### Syvempi kuvaus tietokohteista.
+Melkein kaikista tauluista Full CRUD! Paitsi kommentit, tästä puuttuu muokkaus toiminnallisuus.
+
+Tauluja yhteensä: 5!
+Threads: Pystyy luoda, lukea, päivittää ja poistaa.
+Tags: Pystyy luoda (Admin), lukea ja poistaa. (Päivitys puuttuu ellei tähän voida laskea lisäämistä ja poistamista threadeille).
+Section : Pystyy luoda (Admin), lukea, muokata ja poistaa.
+Users: -||-
+Comments: Voi luoda, lukea ja poistaa.
+
+Monimutkaisia kyselyitä paljon! Nämä on valittu eri tilanteisiin ja soveltuvat sivun toimintaan.
+Kyselyt vaihtelevat ehtolauseilla ja staattisia kyselyitä on useita, jotka on kutsuttu sitten niille tarpeellisissa kohdissa.
+
+
 ### Käyttöohje
 Linkki foorumille --> [Foorumi](https://mirex-pelifoorumi.herokuapp.com/)
 
