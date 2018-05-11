@@ -84,7 +84,7 @@ Salasanat ovat siis selkokielisinä (Siksi älä käytä samoja salasanoja täll
 
 ### Puuttuu tällä hetkellä:
 - Tykkäämis toiminto (Ei pakollinen! Kommentit ovat jo tarpeeksi riittäviä!)
-- Joistain syötteiden kohdista puuttuu ilmoitus mikä syötteessä on pielessä. (Tätä olen oikonut asettamalla ohjeeksi jo ennen mikää esim pituus pitää olla).
+- Joistain syötteiden kohdista puuttuu ilmoitus mikä syötteessä on pielessä. (Tätä olen oikonut asettamalla ohjeeksi jo ennen kuinka kenttään kuuluu kirjoittaa esim: mikä pituus sallittu tai kommentti kentän laskuri).
   - Koska sovellus käyttää paljon redirect kutsuja ja sivuista löytyy kenttiä, joita ei ole suoraan otettu wtformista, niin en ole ymmärtänyt kuinka tähän lisätään virheen näyttäminen... (Tyhjiä kenttiä sivun syötteet eivät koskaan hyväksy (poislukien kuvaus)).
 
 ### Kokemukset taulukossa (päivämäärä  kokemus)
