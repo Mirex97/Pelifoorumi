@@ -96,3 +96,4 @@ Ennen pääsiäistä | Hieman rauhallisempaan otteeseen vain tutustunut pythonin
 6.4.2018 | Materiaalin ohjeistus korjattu mutta silti pitää listata jokin taulukko ja tätä en tehnyt aikaisemmin. Nyt kuitenkin käyttäjien listaus pitäisi toimia ja tämä listaa aktiiviset käyttäjät keitä foorumilta löytyy.
 20.4.2018 | Tuli hieman kiire, koska aloin pohtimaan onko Tag taulu edes hyödyllinen... Mutta! Sitten hoksasin, että se voisi olla itseasiassa erittäin hyvä foorumille. Ja nyt hieman kiireessä tein tag taulun foorumille. Lisäksi foorumilla ei ollut monesta moneen suhdetta niin sen takia se on myös hyvä!
 10.5.2018 | Koko päivä hiottu projektia valmiiseen muotoon. Ja näyttää hyvältä vaikka itse sanon :D!
+11.5.2018 | Vielä muutama korjailu dokumentaation. Vähensin paljon tekstiä ensimmäisestä readmestä, koska tämä on selitetty paremmin itse täällä dokumentaatiossa.
