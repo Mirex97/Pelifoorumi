@@ -1,5 +1,7 @@
 #### Huom. Sivulla on paljon SQL kyselyitä, koska rooleille on eri tyyppiset kyselynsä. Heitän siis vain muutamia kyselyitä Stoorien ohelle. Simppeleitä, kuten query.get() kyselyitä en lisää ohelle, koska ne ovat itsestään selviä. (Veisi liikaa tilaa).
 
+Suurimmat kyselyt liittyvät yleensä palstojen listaamiseen. Simppeleitä kyselyitä, jos yksittäisiä kohtia muokataan / poistetaan.
+
 ### Käyttäjänä voin:
 - [x] Luoda käyttäjän foorumiin.
 - [x] Asettaa käyttälle uniikin nimen ja muita tietoja.
@@ -50,5 +52,14 @@ SELECT DISTINCT thread.id, thread.name, account.username, section.name, thread.d
 - [x] Ihannoida sivuja!
 - [x] Lukea palstoja.
 - [x] Etsiä palstoja.
+```
+search_threads_by_thread(search):
+        stmt = text("SELECT thread.id, thread.name, account.username, section.name, thread.date_created FROM thread"
+                    " LEFT JOIN account ON account.id = thread.account_id"
+                    " LEFT JOIN section ON section.id = thread.section_id"
+                    " WHERE LOWER(thread.name) LIKE LOWER(:search)"
+                    " AND NOT thread.hidden"
+                    " ORDER BY thread.date_created DESC")
+```
 - [x] Ladata foorumiin liittyvän pelin!
 - [x] rekisteröityä!
