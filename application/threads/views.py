@@ -21,10 +21,6 @@ def threads_index():
                            users = User.query.all(),
                            mythreads = mythreads)
 
-#@app.route("/threads/new/")
-#@login_required
-#def threads_form():
-#    return render_template("threads/new.html", form = ThreadForm())
   
 @app.route("/threads/<thread_id>/", methods=["GET"])
 def show_thread(thread_id):
@@ -34,7 +30,6 @@ def show_thread(thread_id):
         return redirect(request.referrer)
     form = CommentForm()
     form.thread_id.data = thread.id
-    #Sisältää kommenttien katselun!
     return render_template("threads/thread.html",
                            thread = Thread.query.get(thread_id),
                            owner = User.query.get(thread.account_id),
@@ -78,8 +73,7 @@ def threads_search():
         return render_template("threads/search.html", threads = threads)
 
 
-#Need modify!
-# Only admin or owner can modify thread. (if not then return to thread or ).
+
 @app.route("/threads/modify/<thread_id>", methods=["GET", "POST"])
 @login_required
 def thread_modify(thread_id):
@@ -93,7 +87,6 @@ def thread_modify(thread_id):
     else:
         if request.method == "GET":
             form = ModifyForm()
-            #Already instantiat form with threads current texts and names.
             form.name.data = thread.name
             form.desc.data = thread.desc
             form.hidden.data = thread.hidden
@@ -116,9 +109,7 @@ def thread_modify(thread_id):
             db.session.commit()
             return redirect(url_for("show_thread", thread_id = thread.id))
 
-#Pin thread. Admin function to pin threads to the top of a section for convenience!
-#Method only accessible from thread!
-# Also unpins thread if already pinned! Just call same method twice!
+
 @app.route("/threads/pin/<thread_id>", methods=["GET"])
 @login_required
 def thread_pin(thread_id):
@@ -133,7 +124,6 @@ def thread_pin(thread_id):
     return redirect(url_for("show_thread", thread_id = thread.id))
 
 
-#Lock thread, admin function, calls either lock or unlock thread!
 @app.route("/threads/lock/<thread_id>", methods=["GET"])
 @login_required
 def thread_lock(thread_id):

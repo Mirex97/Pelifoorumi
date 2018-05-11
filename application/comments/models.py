@@ -24,7 +24,6 @@ class Comment(db.Model):
                     " WHERE (comment.thread_id = :threadid)"
                     " ORDER BY comment.date_created"
                     " DESC").params(threadid=thread_id)
-        #" + str(section_id) + ")"
         res = db.engine.execute(stmt)
         response = []
         for row in res:

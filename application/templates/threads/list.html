@@ -15,6 +15,7 @@
       <tr>
         <th scope="col">Thread Name</th>
         <th scope="col">Hidden</th>
+        <th scope="col">Locked</th>
         <th scope="col">In Section</th>
         <th scope="col">Remove</th>
       </tr>
@@ -24,7 +25,10 @@
           <a href="{{ url_for('show_thread', thread_id=thread.id) }}">{{ thread.name }}</a>
         </td>
         <td>
-          {% if not thread.hidden %} Visible {% else %} Hidden {% endif %}
+          {% if not thread.hidden %} <span class="badge badge-success"> Visible </span> {% else %} <span class="badge badge-secondary"> Hidden </span> {% endif %}
+        </td>
+        <td>
+          {% if not thread.locked %} <span class="badge badge-success">Unlocked</span> {% else %} <span class="badge badge-danger">Locked</span> {% endif %}
         </td>
         <td>{{ thread.section }}</td>
         <td>

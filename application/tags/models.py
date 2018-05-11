@@ -46,7 +46,6 @@ class Tag(db.Model):
                     " LEFT JOIN tag_thread ON tag.id = tag_thread.tag_id"
                     " LEFT JOIN thread ON thread.id = tag_thread.thread_id"
                     " WHERE (thread.id = :threadid)").params(threadid=thread_id)
-        #" + str(section_id) + ")"
         res = db.engine.execute(stmt)
         response = []
         for row in res:

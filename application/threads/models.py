@@ -62,7 +62,7 @@ class Thread(db.Model):
 
     @staticmethod
     def find_my_threads(account_id):
-        stmt = text("SELECT  thread.id, thread.name, section.name FROM thread"
+        stmt = text("SELECT  thread.id, thread.name, thread.hidden, section.name, thread.locked FROM thread"
                     " LEFT JOIN account ON account.id = thread.account_id"
                     " LEFT JOIN section ON section.id = thread.section_id"
                     " WHERE (thread.account_id = :accountid)"
@@ -70,5 +70,5 @@ class Thread(db.Model):
         res = db.engine.execute(stmt)
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1], "section":row[2]})
+            response.append({"id":row[0], "name":row[1], "hidden":row[2], "section":row[3], "locked":row[4]})
         return response
